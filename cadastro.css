@@ -4,7 +4,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: "Lancelot", serif;
-    background-color: #E4E4F7;
+    background-color: #1E1E1E;
 }
 
 
@@ -18,10 +18,10 @@ body {
 nav {
     width: 100vw;
     height: 13vh;
-    /* background-color: aquamarine; */
+    /* background-color: aquamarine;  */
     display: flex;
     align-items: center;
-    position: relative;
+    position: absolute;
     justify-content: flex-start;
 }
 
@@ -35,64 +35,62 @@ nav img {
     align-self: flex-end;
 }
 
-.login {
+.cadastro {
     /* background-color: blueviolet; */
-    position: relative;
-    top:50px; 
-    right: 250px;
     align-self: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 40px;   
-    margin-left: 50px; 
+    gap: 30px; 
+    margin-left: 250px;  
+    margin-right: 50px;
 }
 
-.titulo-login {
+.titulo-cadastro {
     font-size: 35px;
-    color: #1E1E1E;
+    color: #E4E4F7;
 }
 
-.titulo-input-login {
-    color: #1E1E1E;
+.titulo-input-cadastro {
+    color: #E4E4F7;
     font-size: 25px;
 }
 
-.input-login {
-    background-color: #1E1E1E;
+.input-cadastro {
+    background-color: #E4E4F7;
     border: none;
     border-radius: 5px;
     height: 35px;
     width: 380px;
-    color: #E4E4F7;
+    color: #1E1E1E;
 }
 
-.info-login {
+.info-cadastro {
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
 
-.outros-login{
+.outros-cadastro{
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
 }
 
-.outro-login{
-    color: #1E1E1E;
+.outro-cadastro{
+    color: #E4E4F7;
     font-size:19px ;
     cursor: pointer;
 }
 
-.botao-login{
-    background-color: #E4E4F7;
-    border: 1px solid #1E1E1E;
+.botao-cadastro{
+    background-color: #1E1E1E;
+    border: 1px solid #E4E4F7;
     border-radius: 18px;
     width: 150px;
     height: 50px;
-    color: #1E1E1E;
+    color: #E4E4F7;
     font-family:"Lancelot", serif ;
     font-size: 25px;
     cursor: pointer;
