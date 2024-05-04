@@ -1,6 +1,4 @@
-# DancingQueen 👑🩰
-
-## Bem Vindo!
+# Bem Vindo!
 
 
 
@@ -9,7 +7,7 @@
 </div>
 
 <div align="center"> 
-<img height="200px"; src="img/logoBranco.png" alt="Minha Imagem">
+<img height="100px"; src="img/logoBranco.png" alt="Minha Imagem">
 </div>
 
 
