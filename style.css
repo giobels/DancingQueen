@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Lancelot&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Lancelot", serif;
+    background-color: #E4E4F7;
+}
+
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+
+nav {
+    width: 100vw;
+    height: 13vh;
+    /* background-color: aquamarine; */
+    display: flex;
+    align-items: center;
+    position: relative;
+    justify-content: flex-start;
+}
+
+nav img {
+    width: 250px;
+    padding-left: 10px;
+}
+
+.fundo {
+    height: 100vh;
+    align-self: flex-end;
+}
+
+.login {
+    /* background-color: blueviolet; */
+    position: relative;
+    top:50px; 
+    right: 250px;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;   
+    margin-left: 50px; 
+}
+
+.titulo-login {
+    font-size: 35px;
+    color: #1E1E1E;
+}
+
+.titulo-input-login {
+    color: #1E1E1E;
+    font-size: 25px;
+}
+
+.input-login {
+    background-color: #1E1E1E;
+    border: none;
+    border-radius: 5px;
+    height: 35px;
+    width: 380px;
+    color: #E4E4F7;
+}
+
+.info-login {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.outros-login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.outro-login{
+    color: #1E1E1E;
+    font-size:19px ;
+}
+
+.botao-login{
+    background-color: #E4E4F7;
+    border: 1px solid #1E1E1E;
+    border-radius: 18px;
+    width: 150px;
+    height: 50px;
+    color: #1E1E1E;
+    font-family:"Lancelot", serif ;
+    font-size: 25px;
+}
