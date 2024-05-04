@@ -83,6 +83,7 @@ nav img {
 .outro-login{
     color: #1E1E1E;
     font-size:19px ;
+    cursor: pointer;
 }
 
 .botao-login{
@@ -94,4 +95,5 @@ nav img {
     color: #1E1E1E;
     font-family:"Lancelot", serif ;
     font-size: 25px;
+    cursor: pointer;
 }
