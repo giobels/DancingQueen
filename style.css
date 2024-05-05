@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Lancelot&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Lancelot", serif;
+    background-color: #E4E4F7;
+}
+
+/* header {
+    width: 100vw;
+} */
+
+.fundo-header {
+    width: 100%; 
+    /* position: absolute;  */
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+nav {
+    width: 100%;
+    height: 13vh;
+    /* background-color: rgb(255, 127, 217);  */
+    display: flex;
+    align-items: center;
+    position: absolute;
+    justify-content: space-between; 
+    /* z-index: 1; */
+}
+
+nav img {
+    width: 250px;
+    padding-left: 10px;
+}
+
+.navbar{
+    width: auto;
+    display: flex;
+    color: #E4E4F7;
+    justify-content: space-between; 
+    list-style: none;
+    align-items: center;
+    padding: 25px;
+    font-size: 25px;
+    gap: 100px;
+}
+
+a{
+    text-decoration: none;
+    color:#E4E4F7 ;
+}
+
+.container{
+    background: linear-gradient(to bottom,  #E4E4F7, black );
+}
+
+.cisne-branco{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 200px;
+    padding-left: 300px;
+    padding-right: 300px; 
+    padding-bottom: 200px;
+    gap: 90px;
+}
+
+.titulo-branco{
+    color:#1E1E1E ;
+    font-size: 30px;
+}
+
+.texto-branco{
+    color: #1E1E1E;
+    font-size: 20px;
+}
