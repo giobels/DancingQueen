@@ -17,7 +17,7 @@ body {
 
 nav {
     width: 100vw;
-    height: 13vh;
+    height: 10vh;
     /* background-color: aquamarine; */
     display: flex;
     align-items: center;
@@ -27,7 +27,7 @@ nav {
 
 nav img {
     width: 250px;
-    padding-left: 10px;
+    padding: 10px;
 }
 
 .fundo {
@@ -87,6 +87,7 @@ nav img {
 }
 
 .botao-login{
+    display: inline-block;
     background-color: #E4E4F7;
     border: 1px solid #1E1E1E;
     border-radius: 18px;
@@ -96,8 +97,34 @@ nav img {
     font-family:"Lancelot", serif ;
     font-size: 25px;
     cursor: pointer;
-
+    transition: all 0.5s;
 }
+
+.botao-login span{
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .botao-login span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+  .botao-login:hover span {
+    padding-right: 25px;
+  }
+  
+  .botao-login:hover  span:after {
+    opacity: 1;
+    right: 0;
+  }
+
 
 a{
     text-decoration: none;
