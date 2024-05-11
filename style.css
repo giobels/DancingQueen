@@ -7,13 +7,9 @@ body {
     background-color: #E4E4F7;
 }
 
-/* header {
-    width: 100vw;
-} */
 
 .fundo-header {
     width: 100%;
-    /* position: absolute;  */
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 
@@ -25,7 +21,8 @@ nav {
     align-items: center;
     position: fixed;
     justify-content: space-between;
-    /* z-index: 1; */
+    z-index: 1;
+    user-select: none;
 }
 
 nav img {
@@ -83,7 +80,7 @@ nav.active {
     color: #1E1E1E; 
     border-bottom-style:solid;
     border-color: #3b3b3b;
-border-width: 1px;
+    border-width: 1px;
 }
 
 nav.active  a{
@@ -97,18 +94,21 @@ nav.active .nav-links::before {
 
 
 .container {
-    background: linear-gradient(to bottom, #E4E4F7, black);
+    background: linear-gradient(to bottom, #E4E4F7 40%, black 60%);
+    position: absolute;
+    z-index: -1;
 }
 
 .cisne {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 200px;
+    /* padding-top: 100px; */
     padding-left: 300px;
     padding-right: 300px;
-    padding-bottom: 200px;
+    /* padding-bottom: 200px; */
     gap: 90px;
+    position: relative;
 }
 
 .titulo-branco {
@@ -141,6 +141,7 @@ nav.active .nav-links::before {
     font-family: "Lancelot", serif;
     font-size: 25px;
     cursor: pointer;
+    user-select: none;
 
 }
 
@@ -156,6 +157,7 @@ nav.active .nav-links::before {
     font-size: 25px;
     cursor: pointer;
     transition: all 0.5s;
+    user-select: none;
 }
 
 .botao-anim{
@@ -182,3 +184,108 @@ nav.active .nav-links::before {
     opacity: 1;
     right: 0;
   }
+
+
+  .pena{
+    width: 45px;
+    position: relative;
+    /* opacity: 0;   */
+}
+  #penad1{
+    align-self: flex-end;
+    top: 100px;
+    left:90px;
+    transform:  rotate(-9deg);
+  } 
+
+  #penae1{
+    align-self: flex-start;
+    top: 150px;
+    /* left:20px; */
+    right: 60px;
+    transform:  rotate(-80deg);
+  } 
+
+  #penad2{
+    align-self: flex-end;
+    bottom: 270px;
+    left:205px;
+    transform:  rotate(-9deg);
+  }
+
+  #penae2{
+    align-self: flex-start;
+    bottom: 470px;
+    right: 200px;
+    transform: rotate(-90deg);
+
+  }
+  
+#penad3{
+    align-self: flex-end;
+    bottom: 300px;
+}
+
+#penae3{
+    align-self: flex-start;
+    bottom: 450px;
+    transform: rotate(-20deg);
+    right: 90px;
+}
+
+
+#penad4{
+    align-self: flex-end;
+    bottom: 350px;
+    transform: scaleX(-1);
+    right: 250px;
+    /* opacity: 85%; */
+}
+
+#penae4{
+    align-self: flex-start;
+    bottom: 250px;
+    /* opacity: 85%; */
+}
+
+#penad5{
+    align-self: flex-end;
+    bottom: 185px;
+}
+
+/* #penabrancae1{
+    align-self: flex-start;
+    bottom: 50px;
+    transform: scaleX(-1);
+    right: 40px;
+    opacity: 85%;
+} */
+
+#penabrancad1{
+    align-self: flex-end;
+    top: 80px;
+    left: 50px;
+    transform: rotate(90deg); 
+}
+
+#penabrancae2{
+    align-self: flex-start;
+    right: 170px;
+    bottom: 450px;
+    transform: scaleX(-1);
+}
+
+#penabrancad2{
+    align-self: flex-end;
+    bottom: 350px;
+    left: 170px;
+    transform: rotate(-5deg);
+}
+
+#penabrancae3{
+    align-self: flex-start;
+    bottom: 350px;
+    transform: rotate(-5deg);
+    right: 50px;
+}
+
