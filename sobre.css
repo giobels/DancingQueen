@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Lancelot&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Lancelot", serif;
+    background-color: #E4E4F7;
+}
+
+nav {
+    width: 100%;
+    height: 10vh;
+    /* background-color: rgb(255, 127, 217);   */
+    display: flex;
+    align-items: center;
+    position: fixed;
+    justify-content: space-between;
+    /* z-index: 1; */
+    user-select: none;
+    border-bottom-style:solid;
+    border-color: #3b3b3b;
+    border-width: 1px;
+}
+
+nav img {
+    width: 250px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+
+.navbar {
+    width: auto;
+    display: flex;
+    color:  #1E1E1E ;
+    justify-content: space-between;
+    list-style: none;
+    align-items: center;
+    padding: 25px;
+    font-size: 25px;
+    gap: 100px;
+}
+
+a {
+    text-decoration: none;
+    color: #1E1E1E;
+    transition: 0.5s;
+    position: relative;
+}
+
+a:hover {
+    color:#1E1E1E ;
+    transition: transform .2s;
+}
+
+ .nav-links::before {
+    content: '';
+    bottom: -4px;
+    position: absolute;
+    background-color:  #1E1E1E;
+    border-radius: 4px;
+    width: 100%;
+    transform: scaleX(0);
+    transition: transform .2s;
+    transform-origin: right;
+    height: 1px;
+}
+
+ .nav-links:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+    background-color: #1E1E1E;
+}

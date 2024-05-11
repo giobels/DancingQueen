@@ -21,12 +21,12 @@
                 
                 <div class="info-login">
                     <span class="titulo-input-login">E-mail</span>
-                    <input class="input-login" type="text">
+                    <input class="input-login" type="text" id="input_email">
                 </div>
 
                 <div class="info-login">
                     <span class="titulo-input-login">Senha</span>
-                    <input class="input-login" type="password">
+                    <input class="input-login" type="password" id="input_senha">
                 </div>
 
                 <div class="outros-login">
@@ -46,3 +46,14 @@
 </body>
 
 </html>
+
+<script>
+    function entrar(){
+        const email = input_email.value;
+        const senha = input_senha.value;
+
+        if(email == '' || senha == ''){
+            alert('Insira um login e senha')
+        }
+    }
+</script>

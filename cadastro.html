@@ -23,23 +23,23 @@
 
             <div class="info-cadastro">
                 <span class="titulo-input-cadastro">Nome</span>
-                <input class="input-cadastro" type="text">
+                <input class="input-cadastro" type="text" id="input_nome">
             </div>
 
 
             <div class="info-cadastro">
                 <span class="titulo-input-cadastro">E-mail</span>
-                <input class="input-cadastro" type="text">
+                <input class="input-cadastro" type="text" id="input_email">
             </div>
 
             <div class="info-cadastro">
                 <span class="titulo-input-cadastro">Senha</span>
-                <input class="input-cadastro" type="password">
+                <input class="input-cadastro" type="password" id="input_senha">
             </div>
 
             <div class="info-cadastro">
-                <span class="titulo-input-cadastro">Repetir Senha</span>
-                <input class="input-cadastro" type="password">
+                <span class="titulo-input-cadastro">Confirmar Senha</span>
+                <input class="input-cadastro" type="password" id="input_confirmarSenha">
             </div>
 
             <div class="outros-cadastro">
@@ -54,3 +54,25 @@
 </body>
 
 </html>
+
+<script>
+    function cadastrar(){
+        const nome = input_nome.value;
+        const email = input_email.value;
+        const senha = input_senha.value;
+        const confirmarSenha = input_confirmarSenha.value;
+
+        if(nome =='' || email=='' || senha=='' || confirmarSenha==''){
+            alert('Preencha todos os campos para continuar');
+        }
+        else if(email.indexOf('@')==-1 || email.endsWith('@') || email.indexOf('.')==-1){
+            alert('Insira um e-mail válido')
+        }
+        else if(senha != confirmarSenha){
+            alert('A confirmação de senha não confere com a senha inserida')
+        }
+        else{
+            alert('Cadastro realizado com sucesso! Você será redirecionado a página de login.')
+        }
+    }
+</script>
