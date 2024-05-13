@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DancingQueen</title>
-    <link rel="shortcut icon" href="img/icon.png">
-    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="assets/icon.png">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
     <header>
         <nav>
-           <a href="index.html"><img id="logo" src="img/logoBranco.png" /></a>
+           <a href="index.html"><img id="logo" src="assets/logoBranco.png" /></a>
             <ul class="navbar">
                 <a href="index.html">
                     <li class="nav-links">Home</li>
@@ -28,12 +28,12 @@
                 </a>
             </ul>
         </nav>
-        <img class="fundo-header" src="img/home.jpg" />
+        <img class="fundo-header" src="assets/home.jpg" />
     </header>
     <div class="container">
         <div class="cisne">
-            <img src="img/pena2.svg" id="penae1" class="pena">
-            <img src="img/pena1.svg" id="penad1" class="pena">
+            <img src="assets/pena2.svg" id="penae1" class="pena">
+            <img src="assets/pena1.svg" id="penad1" class="pena">
             <span class="titulo-branco">Corpore Sano</span>
             <p class="texto-branco">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -45,17 +45,17 @@
                 dolor augue auctor nunc. Sed eget dictum enim.
             </p>
             <a href="sobre.html"><button class="botao-branco"><span class="botao-anim">Saiba mais</span></button></a>
-            <img src="img/pena3.svg" id="penad2" class="pena">
-            <img src="img/pena1.svg" id="penae2" class="pena">
-            <img src="img/pena2.svg" id="penad3" class="pena">
-            <img src="img/pena3.svg" id="penae3" class="pena">
-            <img src="img/pena3.svg" id="penad4" class="pena">
-            <img src="img/pena2.svg" id="penae4" class="pena">
-            <img src="img/pena1.svg" id="penad5" class="pena">
+            <img src="assets/pena3.svg" id="penad2" class="pena">
+            <img src="assets/pena1.svg" id="penae2" class="pena">
+            <img src="assets/pena2.svg" id="penad3" class="pena">
+            <img src="assets/pena3.svg" id="penae3" class="pena">
+            <img src="assets/pena3.svg" id="penad4" class="pena">
+            <img src="assets/pena2.svg" id="penae4" class="pena">
+            <img src="assets/pena1.svg" id="penad5" class="pena">
         </div>
         <div class="cisne">
             <!-- <img src="img/pena1branca.png" id="penabrancae1"  class="pena"> -->
-            <img src="img/pena2branca.png" id="penabrancad1" class="pena">
+            <img src="assets/pena2branca.png" id="penabrancad1" class="pena">
             <span class="titulo-negro">Corpore Sano</span>
             <p class="texto-negro">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Phasellus lorem enim, lacinia vel volutpat ac, molestie non magna.
@@ -66,9 +66,9 @@
                 dolor augue auctor nunc. Sed eget dictum enim.
             </p>
             <button class="botao-negro"><span class="botao-anim">Corpore</span></button>
-            <img src="img/pena3branca.png" id="penabrancae2" class="pena">
-            <img src="img/pena1branca.png" id="penabrancad2" class="pena">
-            <img src="img/pena2branca.png" id="penabrancae3" class="pena">
+            <img src="assets/pena3branca.png" id="penabrancae2" class="pena">
+            <img src="assets/pena1branca.png" id="penabrancad2" class="pena">
+            <img src="assets/pena2branca.png" id="penabrancae3" class="pena">
         </div>
     </div>
 </body>
@@ -80,10 +80,10 @@
         const scroll = window.scrollY;
         if (scroll > 0) {
             document.querySelector('nav').classList.add("active")
-            document.querySelector('#logo').src = "img/logopreto.png"
+            document.querySelector('#logo').src = "assets/logopreto.png"
         } else {
             document.querySelector('nav').classList.remove("active")
-            document.querySelector('#logo').src = "img/logoBranco.png"
+            document.querySelector('#logo').src = "assets/logoBranco.png"
         }
     }
     document.addEventListener('scroll', menuScroll)

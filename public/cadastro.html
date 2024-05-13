@@ -4,18 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="cadastro.css">
+    <link rel="stylesheet" href="css/cadastro.css">
     <title>Cadastro</title>
-    <link rel="shortcut icon" href="img/icon.png">
+    <link rel="shortcut icon" href="assets/icon.png">
 </head>
 
 <body>
     <div class="container">
         <nav>
-            <a href="index.html"><img src="img/logoBranco.png" /></a>
+            <a href="index.html"><img src="assets/logoBranco.png" /></a>
         </nav>
 
-        <img class="fundo" src="img/cadastro.png">
+        <img class="fundo" src="assets/cadastro.png">
 
         <div class="cadastro">
 
@@ -68,11 +68,15 @@
         else if(email.indexOf('@')==-1 || email.endsWith('@') || email.indexOf('.')==-1){
             alert('Insira um e-mail válido')
         }
+        else if(senha.length < 6 || senha.match(/[^0-9]/g)){
+            alert('A senha deve ter no mínimo 6 caractéres e pelo menos um número')
+        }
         else if(senha != confirmarSenha){
             alert('A confirmação de senha não confere com a senha inserida')
         }
         else{
             alert('Cadastro realizado com sucesso! Você será redirecionado a página de login.')
+            window.location.href = "login.html"
         }
     }
 </script>
