@@ -7,7 +7,7 @@
 </div>
 
 <div align="center"> 
-<img height="100px"; src="img/logoBranco.png" alt="Minha Imagem">
+<img height="100px"; src="public/assets/logoBranco.png" alt="Minha Imagem">
 </div>
 
 
@@ -18,3 +18,6 @@
 <div> 
   O projeto contará com uma landing page, quiz, login, cadastro e dashboard. Desenvolvido por mim apenas para estudo pessoal.
 </div>
+
+
+[def]: ublic/assets/logoBranco.pn
