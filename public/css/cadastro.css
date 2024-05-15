@@ -127,3 +127,29 @@ nav img {
 a{
     text-decoration: none;
 }
+
+.transicao {
+    background-color:#141414;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 1;
+    transition: 1s;
+    display: flex;
+    align-self: flex-end;
+}
+
+.transicao.active {
+    width: 0px;
+    transition: 1s;
+}
+
+.transicao.active.login{
+    background-color:#cdcddf;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 1;
+    transition: 1s;
+    opacity: 1; 
+}

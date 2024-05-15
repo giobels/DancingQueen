@@ -10,50 +10,63 @@
 </head>
 
 <body>
+    <div class="transicao"></div>
     <div class="container">
         <nav>
             <a href="index.html"><img src="assets/logopreto.png" /></a>
         </nav>
 
-            <div class="login">
+        <div class="login">
 
-                <span class="titulo-login">Login</span>
-                
-                <div class="info-login">
-                    <span class="titulo-input-login">E-mail</span>
-                    <input class="input-login" type="text" id="input_email">
-                </div>
+            <span class="titulo-login">Login</span>
 
-                <div class="info-login">
-                    <span class="titulo-input-login">Senha</span>
-                    <input class="input-login" type="password" id="input_senha">
-                </div>
+            <div class="info-login">
+                <span class="titulo-input-login">E-mail</span>
+                <input class="input-login" type="text" id="input_email">
+            </div>
 
-                <div class="outros-login">
-                    <span class="outro-login">Esqueceu a senha?</span>
-                   <a href="cadastro.html"> <span class="outro-login" onclick="ircadastro()">Não tem uma conta? Cadastrar</span></a>
-                </div>
+            <div class="info-login">
+                <span class="titulo-input-login">Senha</span>
+                <input class="input-login" type="password" id="input_senha">
+            </div>
 
-
-                <button onclick="entrar()" class="botao-login"><span class="botao-anim">Entrar</span></button>
-
+            <div class="outros-login">
+                <span class="outro-login">Esqueceu a senha?</span>
+                <a onclick="transicaoCadastro()"> <span class="outro-login" onclick="ircadastro()">Não tem uma conta?
+                        Cadastrar</span></a>
             </div>
 
 
-            <img class="fundo" src="assets/login.jpg">
-            
+            <button onclick="entrar()" class="botao-login"><span class="botao-anim">Entrar</span></button>
+
+        </div>
+
+
+        <img class="fundo" src="assets/login.jpg">
+
     </div>
 </body>
 
 </html>
 
 <script>
-    function entrar(){
+
+    window.onload = function () {
+        setTimeout(document.querySelector('div').classList.add("active"), 1000)
+    }
+
+
+    function entrar() {
         const email = input_email.value;
         const senha = input_senha.value;
 
-        if(email == '' || senha == ''){
+        if (email == '' || senha == '') {
             alert('Insira um login e senha')
         }
+    }
+
+    function transicaoCadastro(){
+        document.querySelector('div').classList.add("cadastro")
+        setTimeout(function(){window.location = 'cadastro.html'},1000)
     }
 </script>

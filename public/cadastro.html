@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    <div class="transicao"></div>
     <div class="container">
         <nav>
             <a href="index.html"><img src="assets/logoBranco.png" /></a>
@@ -43,7 +44,7 @@
             </div>
 
             <div class="outros-cadastro">
-                <a href="login.html"><span class="outro-cadastro">Já tem cadastro? Entrar</span></a>
+                <a onclick="transicaoLogin()"><span class="outro-cadastro">Já tem cadastro? Entrar</span></a>
             </div>
 
 
@@ -56,6 +57,11 @@
 </html>
 
 <script>
+
+    window.onload = function () {
+        setTimeout(document.querySelector('div').classList.add("active"), 1000)
+    }
+
     function cadastrar(){
         const nome = input_nome.value;
         const email = input_email.value;
@@ -78,5 +84,10 @@
             alert('Cadastro realizado com sucesso! Você será redirecionado a página de login.')
             window.location.href = "login.html"
         }
+    }
+
+    function transicaoLogin(){
+        document.querySelector('div').classList.add("login")
+        setTimeout(function(){window.location = 'login.html'},1000)
     }
 </script>

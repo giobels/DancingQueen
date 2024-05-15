@@ -10,20 +10,21 @@
 </head>
 
 <body>
+    <div class="transicao"></div>
     <header>
         <nav>
-           <a href="index.html"><img id="logo" src="assets/logoBranco.png" /></a>
+            <a href="index.html"><img id="logo" src="assets/logoBranco.png" /></a>
             <ul class="navbar">
                 <a href="index.html">
                     <li class="nav-links">Home</li>
                 </a>
-                <a href="sobre.html">
+                <a href="">
                     <li class="nav-links">Sobre mim</li>
                 </a>
                 <a href="">
                     <li class="nav-links">Corpore</li>
                 </a>
-                <a href="login.html">
+                <a onclick="transicaoLogin()">
                     <li class="nav-links">Login/Cadastro</li>
                 </a>
             </ul>
@@ -44,7 +45,7 @@
                 Cras venenatis, odio vel porta tempus, elit mi porta dui, non volutpat
                 dolor augue auctor nunc. Sed eget dictum enim.
             </p>
-            <a href="sobre.html"><button class="botao-branco"><span class="botao-anim">Saiba mais</span></button></a>
+            <button class="botao-branco"><span class="botao-anim">Saiba mais</span></button>
             <img src="assets/pena3.svg" id="penad2" class="pena">
             <img src="assets/pena1.svg" id="penae2" class="pena">
             <img src="assets/pena2.svg" id="penad3" class="pena">
@@ -86,6 +87,30 @@
             document.querySelector('#logo').src = "assets/logoBranco.png"
         }
     }
-    document.addEventListener('scroll', menuScroll)
+    document.addEventListener('scroll', menuScroll) 
+    
+
+    function transicaoLogin(){
+        document.querySelector('div').classList.add("active")
+        setTimeout(function(){window.location = 'login.html'},1000)
+      
+        }
+            
+
+    // const p = document.querySelector("#penae1")
+    // function estaVisivel() {
+    //     const posicoes = p.getBoundingClientRect();
+    //     const inicio = posicoes.top;
+    //     const fim = posicoes.bottom;
+    //     let estaVisivel = false
+    
+    //     if ((inicio >= 0) && (fim <= window.innerHeight)) {
+        //         estaVisivel = true;
+        //     }
+        
+        //     return estaVisivel;
+        
+        // }
+        // s console.log(estaVisivel(p))
 
 </script>
