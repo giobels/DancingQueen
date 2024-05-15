@@ -71,6 +71,9 @@
         if(nome =='' || email=='' || senha=='' || confirmarSenha==''){
             alert('Preencha todos os campos para continuar');
         }
+        else if(nome.length > 20){
+            alert('O nome deve ter no máximo 20 caractéres')
+        }
         else if(email.indexOf('@')==-1 || email.endsWith('@') || email.indexOf('.')==-1){
             alert('Insira um e-mail válido')
         }
@@ -95,6 +98,5 @@
     function transicaoHome(){
         document.querySelector('div').classList.add("login")
         setTimeout(function(){window.location = 'index.html'},1000)
-      
         }
 </script>
