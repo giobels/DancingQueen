@@ -13,7 +13,7 @@
     <div class="transicao"></div>
     <div class="container">
         <nav>
-            <a href="index.html"><img src="assets/logoBranco.png" /></a>
+            <a onclick="transicaoHome()"><img src="assets/logoBranco.png" /></a>
         </nav>
 
         <img class="fundo" src="assets/cadastro.png">
@@ -90,4 +90,11 @@
         document.querySelector('div').classList.add("login")
         setTimeout(function(){window.location = 'login.html'},1000)
     }
+
+    
+    function transicaoHome(){
+        document.querySelector('div').classList.add("login")
+        setTimeout(function(){window.location = 'index.html'},1000)
+      
+        }
 </script>

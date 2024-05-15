@@ -13,7 +13,7 @@
     <div class="transicao"></div>
     <div class="container">
         <nav>
-            <a href="index.html"><img src="assets/logopreto.png" /></a>
+            <a onclick="transicaoHome()"><img src="assets/logopreto.png" /></a>
         </nav>
 
         <div class="login">
@@ -68,5 +68,10 @@
     function transicaoCadastro(){
         document.querySelector('div').classList.add("cadastro")
         setTimeout(function(){window.location = 'cadastro.html'},1000)
+    }
+
+    function transicaoHome(){
+        document.querySelector('div').classList.remove("active")
+        setTimeout(function(){window.location = 'index.html'},1000)
     }
 </script>
