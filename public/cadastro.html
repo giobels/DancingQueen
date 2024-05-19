@@ -62,41 +62,55 @@
         setTimeout(document.querySelector('div').classList.add("active"), 1000)
     }
 
-    function cadastrar(){
+    function cadastrar() {
         const nome = input_nome.value;
         const email = input_email.value;
         const senha = input_senha.value;
         const confirmarSenha = input_confirmarSenha.value;
 
-        if(nome =='' || email=='' || senha=='' || confirmarSenha==''){
+        if (nome == '' || email == '' || senha == '' || confirmarSenha == '') {
             alert('Preencha todos os campos para continuar');
         }
-        else if(nome.length > 20){
+        else if (nome.length > 20) {
             alert('O nome deve ter no máximo 20 caractéres')
         }
-        else if(email.indexOf('@')==-1 || email.endsWith('@') || email.indexOf('.')==-1){
+        else if (email.indexOf('@') == -1 || email.endsWith('@') || email.indexOf('.') == -1) {
             alert('Insira um e-mail válido')
         }
-        else if(senha.length < 6 || senha.match(/[^0-9]/g)){
-            alert('A senha deve ter no mínimo 6 caractéres e pelo menos um número')
+        else if (senha.length > 6 || senha.length <6 /*|| senha.match(/[^1-9]/g)*/) {
+            alert('A senha deve ter 6 caractéres e pelo menos um número')
         }
-        else if(senha != confirmarSenha){
+        else if (senha != confirmarSenha) {
             alert('A confirmação de senha não confere com a senha inserida')
         }
-        else{
+        else {
             alert('Cadastro realizado com sucesso! Você será redirecionado a página de login.')
+
+            fetch("/usuarios/cadastrar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    nomeServer: nome,
+                    emailServer: email,
+                    senhaServer: senha
+                }),
+            })
             window.location.href = "login.html"
         }
     }
 
-    function transicaoLogin(){
+    function transicaoLogin() {
         document.querySelector('div').classList.add("login")
-        setTimeout(function(){window.location = 'login.html'},1000)
+        setTimeout(function () { window.location = 'login.html' }, 1000)
     }
 
-    
-    function transicaoHome(){
+
+    function transicaoHome() {
         document.querySelector('div').classList.add("login")
-        setTimeout(function(){window.location = 'index.html'},1000)
-        }
+        setTimeout(function () { window.location = 'index.html' }, 1000)
+    }
 </script>
