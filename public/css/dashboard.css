@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Lancelot&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Lancelot", serif;
+    background-color: #E4E4F7;
+}
+
+nav {
+    width: 100%;
+    height: 10vh;
+    background-color: #1E1E1E; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+}
+
+nav img{
+    width: 50px;
+    padding: 20px;
+}
+
+.navbar {
+    width: 60%;
+    display: flex;
+    color: #BCBCBC;
+    justify-content: space-between;
+    list-style: none;
+    align-items: center;
+    padding-left: 20px;
+    font-size: 20px;
+}
+
+
+.nav-links{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap:10px;
+    transition: 0.5s;
+}
+
+.nav-links img{
+    width: 30px;
+}
+
+.nav-links:hover{
+    color: white;
+    transform:scale(1.005); 
+    translate: 5px;
+    transition: 0.5s;
+    transform-origin: center;
+}
+
+.container{
+    display: flex;
+}
+
+h2{
+    font-weight: lighter;
+    font-size: 35px;
+    padding-left: 40px;
+}
+
+/* .kpis{
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.kip{
+    background-color: white;
+    width: 1000px;
+    height: 80px;
+} */
