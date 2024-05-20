@@ -17,7 +17,7 @@
                 <li class="nav-links"> <img src="assets/logout.png">Sair</li>
                 <li class="nav-links"> <img src="assets/config.png"> Suporte</li>
                 <li class="nav-links"> <img src="assets/coroa.png">Dashboard</li>
-                <li class="nav-links" onclick="opcaoCoreo()"> <img src="assets/sapatilha.png">Coreografia</li>
+                <li class="nav-links" onclick="opcaoCoreo1()"> <img src="assets/sapatilha.png">Coreografia</li>
             </ul>
             <img src="assets/bailarina.png">
         </nav>
@@ -131,7 +131,17 @@
 </script>
 
 <script>
-    function opcaoCoreo(){
-        // opcaoCoreo.style.display = "block"; 
+
+    let coreopcao = 0;
+    function opcaoCoreo1() {
+
+        if(coreopcao==0){
+            opcaoCoreo.style.display = "block";
+            coreopcao++
+        }else{
+            opcaoCoreo.style.display = "none";
+            coreopcao--
+        }
+
     }
 </script>

@@ -31,3 +31,4 @@ fkCoreografia int,
 constraint pkFestival primary key (idFestival),
 constraint fkCoreografiaFestival foreign key (fkCoreografia) references Coreografia(idCoreografia));
 
+select*from usuario;

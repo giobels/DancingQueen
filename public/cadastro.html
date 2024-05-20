@@ -77,29 +77,58 @@
         else if (email.indexOf('@') == -1 || email.endsWith('@') || email.indexOf('.') == -1) {
             alert('Insira um e-mail válido')
         }
-        else if (senha.length > 6 || senha.length <6 /*|| senha.match(/[^1-9]/g)*/) {
+        else if (senha.length > 6 || senha.length < 6 /*|| senha.match(/[^1-9]/g)*/) {
             alert('A senha deve ter 6 caractéres e pelo menos um número')
         }
         else if (senha != confirmarSenha) {
             alert('A confirmação de senha não confere com a senha inserida')
         }
         else {
-            alert('Cadastro realizado com sucesso! Você será redirecionado a página de login.')
 
-            fetch("/usuarios/cadastrar", {
+            fetch("/usuarios/autenticar", {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json",
+                    "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    // crie um atributo que recebe o valor recuperado aqui
-                    // Agora vá para o arquivo routes/usuario.js
-                    nomeServer: nome,
                     emailServer: email,
                     senhaServer: senha
-                }),
+                })
+            }).then(function (resposta) {
+                console.log("ESTOU NO THEN DO entrar()!")
+
+                if (resposta.ok) {
+                    console.log(resposta);
+                    alert('Este usuário já foi cadastrado!')
+
+                } else {
+                    alert('Cadastro realizado com sucesso! Você será redirecionado a página de login.')
+
+                    fetch("/usuarios/cadastrar", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            // crie um atributo que recebe o valor recuperado aqui
+                            // Agora vá para o arquivo routes/usuario.js
+                            nomeServer: nome,
+                            emailServer: email,
+                            senhaServer: senha
+                        }),
+                    })
+                    window.location.href = "login.html"
+                }
+
+            }).catch(function (erro) {
+                console.log(erro);
             })
-            window.location.href = "login.html"
+
+
+
+
+
+
         }
     }
 

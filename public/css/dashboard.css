@@ -15,7 +15,7 @@ nav {
     align-items: center;
     justify-content: space-between;
     user-select: none;
-    /* position: absolute; */
+    position: static;
 }
 
 nav img{
@@ -59,8 +59,10 @@ nav img{
     width: 100px;
     height: 100px;
     background-color: aqua;
-    /* position: relative; */
-    display: none;
+    position: absolute;
+    display: flex; 
+    z-index: 1;
+    left: 730px;
 }
 
 .container{
@@ -69,6 +71,7 @@ nav img{
     height: 100%;
     align-items: center;
     justify-content: space-around;
+    position: static;
 }
 
 .lateral{
