@@ -17,18 +17,121 @@
                 <li class="nav-links"> <img src="assets/logout.png">Sair</li>
                 <li class="nav-links"> <img src="assets/config.png"> Suporte</li>
                 <li class="nav-links"> <img src="assets/coroa.png">Dashboard</li>
-                <li class="nav-links"> <img src="assets/sapatilha.png">Coreografia</li>
+                <li class="nav-links" onclick="opcaoCoreo()"> <img src="assets/sapatilha.png">Coreografia</li>
             </ul>
             <img src="assets/bailarina.png">
         </nav>
+        <div id="opcaoCoreo">aaaaa</div>
     </header>
     <div class="container">
-        <h2>User's Journey</h2>
-        
-        <!-- <div class="kpis">
-            <div class="kpi">aaaaa</div>
-        </div> -->
+        <div class="lateral">
+            <span id="titulo">User's Journey</span>
+
+            <div class="kpis">
+                <div class="kpi">aaaaa</div>
+                <div class="kpi">aaaaa</div>
+                <div class="kpi">aaaaa</div>
+            </div>
+            <div class="container-grafico">
+                <canvas id="graficoDesempenho" class="grafico"></canvas>
+            </div>
+
+        </div>
+        <div class="lateral">
+            <div class="container-grafico">
+                <canvas id="graficoEvolucao" class="grafico"></canvas>
+            </div>
+            <div class="container-grafico">
+                <canvas id="graficoPontuacao" class="grafico"></canvas>
+            </div>
+        </div>
     </div>
 </body>
 
 </html>
+
+<script>
+    const labels = [  // criando as labels
+        'Janeiro',
+        'Fevereiro',
+        'Março',
+        'Abril',
+        'Maio',
+        'Junho',
+    ];
+
+    const data = {
+        labels: labels, // define as colunas como labels
+        datasets: [{  // definindo os dados 
+            label: 'My firt dataset',
+            backgroundColor: 'rgb(255, 99, 132)', // cor dos pontos no gráfico
+            borderColor: 'rgb(255, 99, 132)', // cor da linha do gráfico
+            data: [0, 10, 5, 2, 20, 30, 45], // dados do gráfico
+        },
+        {
+            label: 'My firt dataset2',
+            backgroundColor: 'rgb(132, 99, 255)',
+            borderColor: 'rgb(132, 99, 255)',
+            data: [10, 20, 15, 12, 30, 40, 55],
+        }]
+    };
+
+    const config = { // variável com as configurações do gráfico 
+        type: 'bar', // tipo do gráfico
+        data: data, // define os dados do gráfico como a variável data
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Custom Chart Title'
+                }
+            }
+        }
+    };
+
+    const config2 = {
+        type: 'radar',
+        data: data,
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Custom Chart Title'
+                }
+            }
+        }
+    };
+
+    const config3 = {
+        type: 'line',
+        data: data,
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Custom Chart Title'
+                }
+            }
+        }
+    };
+
+    const graficoDesempenho = new Chart( // cria um novo gráfico
+        document.getElementById('graficoDesempenho'),
+        config)
+
+    const graficoEvolucao = new Chart(
+        document.getElementById('graficoEvolucao'),
+        config2)
+
+    const graficoPontuacao = new Chart(
+        document.getElementById('graficoPontuacao'),
+        config3)
+
+
+</script>
+
+<script>
+    function opcaoCoreo(){
+        // opcaoCoreo.style.display = "block"; 
+    }
+</script>
