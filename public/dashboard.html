@@ -11,6 +11,25 @@
 </head>
 
 <body>
+    <div class="fundo-modal">
+    </div>
+    <div class="modal">
+        <div class="containerModal">
+            <span>Nova Coreografia</span>
+            <div class="inputsModal">
+                <div class="inputModal">
+                    <span>Nome</span>
+                    <input type="text" class="inputCoreo">
+                </div>
+                <div class="inputModal">
+                    <span>Categoria</span>
+                    <input type="text" class="inputCoreo">
+                </div>
+            </div>
+            <button class="botaoModal">Criar</button>
+        </div>
+    </div>
+
     <header>
         <nav>
             <ul class="navbar">
@@ -21,7 +40,12 @@
             </ul>
             <img src="assets/bailarina.png">
         </nav>
-        <div id="opcaoCoreo">aaaaa</div>
+        <div id="opcaoCoreo">
+            <ul id="listOpcaoCoreo">
+                <li>Nova Coreografia</li>
+                <li>Festival</li>
+            </ul>
+        </div>
     </header>
     <div class="container">
         <div class="lateral">
@@ -135,11 +159,14 @@
     let coreopcao = 0;
     function opcaoCoreo1() {
 
-        if(coreopcao==0){
-            opcaoCoreo.style.display = "block";
+        if (coreopcao == 0) {
+            opcaoCoreo.style.height = "100px";
+            setTimeout(function () { listOpcaoCoreo.style.display = 'flex' }, 150);
+
             coreopcao++
-        }else{
-            opcaoCoreo.style.display = "none";
+        } else {
+            opcaoCoreo.style.height = "0px";
+            listOpcaoCoreo.style.display = 'none';
             coreopcao--
         }
 

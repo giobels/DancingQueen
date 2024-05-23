@@ -186,16 +186,6 @@ nav.active .nav-links::before {
     right: 0;
 }
 
-@keyframes peninhas {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
 .pena {
     width: 45px;
     position: relative;
@@ -310,12 +300,10 @@ nav.active .nav-links::before {
     position: fixed;
     z-index: 1;
     transition: 1s;
-    /* opacity: 0;  */
     
 }
 
 .transicao.active {
-    opacity: 1;
     width: 100vw;    
 }
 
