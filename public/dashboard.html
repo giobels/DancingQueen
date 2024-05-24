@@ -11,22 +11,59 @@
 </head>
 
 <body>
-    <div class="fundo-modal">
+    <div id="fundoModal">
     </div>
-    <div class="modal">
+    <div class="modal" id="modalNovaCoreo">
         <div class="containerModal">
+            <img src="assets/botao-x.png" class="botaoFechar" onclick="fecharModalNovaCoreo()">
             <span>Nova Coreografia</span>
             <div class="inputsModal">
                 <div class="inputModal">
                     <span>Nome</span>
-                    <input type="text" class="inputCoreo">
+                    <input type="text" class="inputCoreo" id="input_coreografia" placeholder="Coreografia">
                 </div>
                 <div class="inputModal">
                     <span>Categoria</span>
-                    <input type="text" class="inputCoreo">
+                    <select class="inputCoreo" id="input_categoria">
+                        <option disabled selected>Selecione uma categoria</option>
+                        <option value="flexibilidade">Flexibilidade</option>
+                        <option value="forca">Força</option>
+                        <option value="tecnica">Técnica</option>
+                        <option value="expressao">Expressão</option>
+                    </select>
                 </div>
             </div>
-            <button class="botaoModal">Criar</button>
+            <button class="botaoModal" onclick="novaCoreo()">Criar</button>
+        </div>
+    </div>
+
+    <div class="modal" id="modalFestival">
+        <div class="containerModal">
+            <img src="assets/botao-x.png" class="botaoFechar" onclick="fecharModalFestival()">
+            <span>Cadastrar Festival</span>
+            <div class="inputsModal">
+                <div class="inputModal">
+                    <span>Festival</span>
+                    <input type="text" class="inputCoreo" id="input_festival" placeholder="Nome do festival">
+                </div>
+                <div class="inputModal">
+                    <span>Coreografia</span>
+                    <select class="inputCoreo" id="select_coreografia">
+                        <option disabled selected>Selecione uma coreografia</option>
+                    </select>
+                </div>
+                <div class="inputModal">
+                    <span>Data</span>
+                    <input type="date" class="inputCoreo" id="input_datafestival">
+                </div>
+
+                <div class="inputModal">
+                    <span>Nota</span>
+                    <input type="number" class="inputCoreo" id="input_notafestival">
+                </div>
+
+            </div>
+            <button class="botaoModal" onclick="cadastrarFestival()">Criar</button>
         </div>
     </div>
 
@@ -42,8 +79,8 @@
         </nav>
         <div id="opcaoCoreo">
             <ul id="listOpcaoCoreo">
-                <li>Nova Coreografia</li>
-                <li>Festival</li>
+                <li onclick="abrirModalNovaCoreo()">Nova Coreografia</li>
+                <li onclick="abrirModalFestival()">Festival</li>
             </ul>
         </div>
     </header>
@@ -156,19 +193,76 @@
 
 <script>
 
-    let coreopcao = 0;
+    let coreopcao = true;
     function opcaoCoreo1() {
 
-        if (coreopcao == 0) {
+        if (coreopcao) {
             opcaoCoreo.style.height = "100px";
-            setTimeout(function () { listOpcaoCoreo.style.display = 'flex' }, 150);
+            setTimeout(function () { listOpcaoCoreo.style.display = "flex" }, 150);
 
-            coreopcao++
+            coreopcao = false;
         } else {
             opcaoCoreo.style.height = "0px";
             listOpcaoCoreo.style.display = 'none';
-            coreopcao--
+            coreopcao = true;
         }
 
+    }
+
+    function novaCoreo() {
+        const coreografia = input_coreografia.value.trim();
+        const categoria = input_categoria.value.trim();
+
+        if (coreografia == '' || categoria == '') {
+            alert('Insira uma coreografia a categoria válida.')
+        } else {
+            fetch("/coreo/cadastrar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    coreografiaServer: coreografia,
+                    categoriaServer: categoria,
+                }),
+            })
+            alert('Nova coreografia adicionada!')
+        }
+    }
+
+    function cadastrarFestival(){
+        const festival = input_festival.value.trim();
+        const datafestival = input_datafestival.value;
+        const nota = input_notafestival.value.trim();
+
+
+    }
+
+    function abrirModalNovaCoreo() {
+        fundoModal.style.display = "block";
+        modalNovaCoreo.style.display = "flex";
+        opcaoCoreo.style.height = "0px";
+        listOpcaoCoreo.style.display = 'none';
+        coreopcao = true;
+    }
+
+    function fecharModalNovaCoreo() {
+        fundoModal.style.display = "none";
+        modalNovaCoreo.style.display = "none";
+    }
+
+    function abrirModalFestival() {
+        fundoModal.style.display = "block";
+        modalFestival.style.display = "flex";
+        opcaoCoreo.style.height = "0px";
+        listOpcaoCoreo.style.display = 'none';
+        coreopcao = true;
+    }
+
+    function fecharModalFestival() {
+        fundoModal.style.display = "none";
+        modalFestival.style.display = "none";
     }
 </script>

@@ -53,19 +53,21 @@ nav img {
     translate: 5px;
     transition: 0.5s;
     transform-origin: center;
+    cursor: pointer;
 }
 
 #opcaoCoreo {
     width: 200px;
     height: 0px;
-    background-color: red;
+    background-color: rgb(252, 249, 255);
     position: absolute;
     display: flex;
-    z-index: 1;
+    /* z-index: 1; */
     left: 670px;
     top: 50px;
     border-radius: 10px;
     transition: 0.5s;
+    cursor: pointer;
 }
 
 #listOpcaoCoreo {
@@ -76,6 +78,7 @@ nav img {
     align-items: flex-start;
     padding-left: 20px;
     font-size: 20px;
+    text-decoration: underline 0.5px #646464;
 }
 
 .modal {
@@ -83,24 +86,25 @@ nav img {
     height: 100vh;
     position: fixed;
     z-index: 1;
-    display: flex;
+    display: none; 
     align-items: center;
     justify-content: center;
     font-size: 25px;
 }
 
-.fundo-modal {
+#fundoModal {
     width: 100vw;
     height: 100vh;
     background-color: #1E1E1E;
     opacity: 50%;
     position: fixed;
     z-index: 1;
+    display: none; 
 }
 
 .containerModal {
     width: 500px;
-    height: 400px;
+    height: auto;
     background-color: white;
     border-radius: 20px;
     z-index: 1;
@@ -109,6 +113,7 @@ nav img {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    padding: 20px;
 }
 
 .inputsModal {
@@ -119,7 +124,7 @@ nav img {
     align-items: center;
     font-size: 20px;
     justify-content: space-between;
-    gap: 35px;
+    gap: 20px;
 }
 
 .inputModal {
@@ -137,6 +142,7 @@ nav img {
     height: 35px;
     width: 380px;
     color: #1E1E1E;
+    margin: 5px;
 }
 
 .botaoModal {
@@ -149,6 +155,13 @@ nav img {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
     font-family: "Lancelot", serif;
     font-size: 20px;
+    cursor: pointer;
+}
+
+.botaoFechar {
+    width: 20px;
+    align-self: flex-end;
+    cursor: pointer;
 }
 
 .container {
