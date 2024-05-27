@@ -1,3 +1,4 @@
+// const { buscarPorId } = require("../controllers/coreoController");
 var database = require("../database/config")
 
 // function autenticar(email, senha) {
@@ -22,7 +23,28 @@ function cadastrar(coreografia, categoria) {
     return database.executar(instrucaoSql);
 }
 
+function buscarPorCoreo(coreografia) {
+    var instrucaoSql = `SELECT * FROM Coreografia WHERE coreografia = '${coreografia}'`;
+  
+    return database.executar(instrucaoSql);
+  }
+
+  function buscarPorId(idCoreografia) {
+    var instrucaoSql = `SELECT * FROM Coreografia WHERE idCoreografia = '${idCoreografia}'`;
+  
+    return database.executar(instrucaoSql);
+  }
+
+  function listar() {
+    var instrucaoSql = `SELECT * FROM Coreografia`;
+  
+    return database.executar(instrucaoSql);
+  }
+
 module.exports = {
     // autenticar,
-    cadastrar
+    cadastrar,
+    buscarPorCoreo,
+    buscarPorId,
+    listar
 };
