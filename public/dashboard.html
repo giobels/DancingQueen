@@ -49,7 +49,7 @@
                 <div class="inputModal">
                     <span>Coreografia</span>
                     <select class="inputCoreo" id="select_coreografia">
-                        <option disabled selected>Selecione uma coreografia</option>
+                        
                     </select>
                 </div>
                 <div class="inputModal">
@@ -236,7 +236,7 @@
         const festival = input_festival.value.trim();
         const datafestival = input_datafestival.value;
         const nota = input_notafestival.value.trim();
-
+        
 
     }
 
@@ -270,11 +270,13 @@
     }
 
     function abrirModalFestival() {
+        select_coreografia.innerHTML = '<option disabled selected>Selecione uma coreografia</option>';
         fundoModal.style.display = "block";
         modalFestival.style.display = "flex";
         opcaoCoreo.style.height = "0px";
         listOpcaoCoreo.style.display = 'none';
         coreopcao = true;
+        listar();
     }
 
     function fecharModalFestival() {
