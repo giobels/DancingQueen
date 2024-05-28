@@ -234,10 +234,25 @@
 
     function cadastrarFestival(){
         const festival = input_festival.value.trim();
-        const datafestival = input_datafestival.value;
+        const data = input_datafestival.value;
         const nota = input_notafestival.value.trim();
+        const coreo = select_coreografia.value;
         
+        fetch("/festival/cadastrar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    festivalServer: festival,
+                    dataServer: data,
+                    notaServer: nota,
+                    coreoServer: coreo,
 
+                }),
+            })
     }
 
     function listar() {

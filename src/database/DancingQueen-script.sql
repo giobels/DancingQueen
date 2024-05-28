@@ -24,7 +24,7 @@ constraint fkUsuarioCoreografia foreign key (fkUsuario) references Usuario (idUs
 
 create table Festival(
 idFestival int auto_increment,
-nome varchar(45) not null,
+festival varchar(45) not null,
 data date not null,
 nota decimal(10,2) not null,
 fkCoreografia int,
@@ -34,6 +34,7 @@ constraint fkCoreografiaFestival foreign key (fkCoreografia) references Coreogra
 
 select*from usuario;
 select*from Coreografia;
+select*from Festival;
 
 
 
