@@ -8,21 +8,16 @@ router.post("/cadastrar", function (req, res) {
     coreoController.cadastrar(req, res);
 })
 
-// router.post("/autenticar", function (req, res) {
-//     coreoController.autenticar(req, res);
-// });
-
-router.get("/buscar", function (req, res) {
-    coreoController.buscarPorCoreo(req, res);
-});
-
-router.get("/buscar/:idCoreografia", function (req, res) {
-    coreoController.buscarPorId(req, res);
-});
-
-router.get("/listar", function (req, res) {
+router.post("/listar", function (req, res) {
     coreoController.listar(req, res);
 });
 
+// router.post("/listar", function (req, res) {
+//     coreoController.listar(req, res);
+// });
+
+// router.get("/listar/:fkUsuario", function (req, res) {
+//     coreoController.listar(req, res);
+// });
 
 module.exports = router;

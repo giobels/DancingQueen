@@ -68,6 +68,14 @@
         const senha = input_senha.value;
         const confirmarSenha = input_confirmarSenha.value;
 
+        let temNumero = true;
+        for(let contador = 0; contador <= senha.length -1; contador++ ){
+            let numeroSenha = Number(senha[contador]);
+            if(numeroSenha){
+                temNumero = false;
+            }
+        }
+
         if (nome == '' || email == '' || senha == '' || confirmarSenha == '') {
             alert('Preencha todos os campos para continuar');
         }
@@ -77,7 +85,10 @@
         else if (email.indexOf('@') == -1 || email.endsWith('@') || email.indexOf('.') == -1) {
             alert('Insira um e-mail válido')
         }
-        else if (senha.length > 6 || senha.length < 6 /*|| senha.match(/[^1-9]/g)*/) {
+        else if (senha.length > 6 || senha.length < 6) {
+            alert('A senha deve ter 6 caractéres e pelo menos um número')
+        }
+        else if (temNumero) {
             alert('A senha deve ter 6 caractéres e pelo menos um número')
         }
         else if (senha != confirmarSenha) {

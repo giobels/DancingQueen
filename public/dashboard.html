@@ -49,7 +49,7 @@
                 <div class="inputModal">
                     <span>Coreografia</span>
                     <select class="inputCoreo" id="select_coreografia">
-                        
+
                     </select>
                 </div>
                 <div class="inputModal">
@@ -71,7 +71,9 @@
         <nav>
             <ul class="navbar">
                 <li class="nav-links"> <img src="assets/logout.png">Sair</li>
-               <a href="https://suportedancingqueen.hipporello.net/desk?"><li class="nav-links"> <img src="assets/config.png"> Suporte</li></a> 
+                <a href="https://suportedancingqueen.hipporello.net/desk?">
+                    <li class="nav-links"> <img src="assets/config.png"> Suporte</li>
+                </a>
                 <li class="nav-links"> <img src="assets/coroa.png">Dashboard</li>
                 <li class="nav-links" onclick="opcaoCoreo1()"> <img src="assets/sapatilha.png">Coreografia</li>
             </ul>
@@ -86,7 +88,7 @@
     </header>
     <div class="container">
         <div class="lateral">
-            <span id="titulo">User's Journey</span>
+            <span id="titulo"></span>
 
             <div class="kpis">
                 <div class="kpi">aaaaa</div>
@@ -112,7 +114,7 @@
 </html>
 
 <script>
-    const labels = [  // criando as labels
+    const labels = [
         'Janeiro',
         'Fevereiro',
         'Março',
@@ -122,12 +124,12 @@
     ];
 
     const data = {
-        labels: labels, // define as colunas como labels
-        datasets: [{  // definindo os dados 
+        labels: labels,
+        datasets: [{
             label: 'My firt dataset',
-            backgroundColor: 'rgb(255, 99, 132)', // cor dos pontos no gráfico
-            borderColor: 'rgb(255, 99, 132)', // cor da linha do gráfico
-            data: [0, 10, 5, 2, 20, 30, 45], // dados do gráfico
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [0, 10, 5, 2, 20, 30, 45],
         },
         {
             label: 'My firt dataset2',
@@ -137,9 +139,9 @@
         }]
     };
 
-    const config = { // variável com as configurações do gráfico 
-        type: 'bar', // tipo do gráfico
-        data: data, // define os dados do gráfico como a variável data
+    const config = {
+        type: 'bar',
+        data: data,
         options: {
             plugins: {
                 title: {
@@ -176,7 +178,7 @@
         }
     };
 
-    const graficoDesempenho = new Chart( // cria um novo gráfico
+    const graficoDesempenho = new Chart(
         document.getElementById('graficoDesempenho'),
         config)
 
@@ -192,6 +194,8 @@
 </script>
 
 <script>
+
+    titulo.innerHTML = `${sessionStorage.NOME_USUARIO}'s Journey`
 
     let coreopcao = true;
     function opcaoCoreo1() {
@@ -212,6 +216,7 @@
     function novaCoreo() {
         const coreografia = input_coreografia.value.trim();
         const categoria = input_categoria.value.trim();
+        const fkUsuario = sessionStorage.ID_USUARIO;
 
         if (coreografia == '' || categoria == '') {
             alert('Insira uma coreografia a categoria válida.')
@@ -222,30 +227,32 @@
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    // crie um atributo que recebe o valor recuperado aqui
-                    // Agora vá para o arquivo routes/usuario.js
+
                     coreografiaServer: coreografia,
                     categoriaServer: categoria,
+                    usuarioServer: fkUsuario,
                 }),
             })
             alert('Nova coreografia adicionada!')
         }
     }
 
-    function cadastrarFestival(){
+    function cadastrarFestival() {
         const festival = input_festival.value.trim();
         const data = input_datafestival.value;
         const nota = input_notafestival.value.trim();
         const coreo = select_coreografia.value;
-        
-        fetch("/festival/cadastrar", {
+
+        if (festival == '' || data == '' || nota == '' || !coreo) {
+            alert('Preencha todos os campos para continuar!')
+        } else {
+            fetch("/festival/cadastrar", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    // crie um atributo que recebe o valor recuperado aqui
-                    // Agora vá para o arquivo routes/usuario.js
+
                     festivalServer: festival,
                     dataServer: data,
                     notaServer: nota,
@@ -253,23 +260,64 @@
 
                 }),
             })
+
+            alert('Novo Festival adicionado!')
+
+        }
+
     }
 
     function listar() {
-    fetch("/coreo/listar", {
-      method: "GET",
-    })
-      .then(function (resposta) {
-        resposta.json().then((coreo) => {
-          coreo.forEach((coreografia) => {
-            select_coreografia.innerHTML += `<option value='${coreografia.idCoreografia}'>${coreografia.coreografia}</option>`;
-          });
-        });
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
-  }
+        const fkUsuario = sessionStorage.ID_USUARIO;
+
+        fetch("/coreo/listar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                fkusuarioServer: fkUsuario,
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then((coreo) => {
+                    coreo.forEach((coreografia) => {
+                        select_coreografia.innerHTML += `<option value='${coreografia.idCoreografia}'>${coreografia.coreografia}</option>`;
+                    });
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+
+    // fetch("/coreo/listar", {
+    //     method: "GET",
+    // })
+    //     .then(function (resposta) {
+    //         resposta.json().then((coreo) => {
+    //             coreo.forEach((coreografia) => {
+    //                 select_coreografia.innerHTML += `<option value='${coreografia.idCoreografia}'>${coreografia.coreografia}</option>`;
+    //             });
+    //         });
+    //     })
+    //     .catch(function (resposta) {
+    //         console.log(`#ERRO: ${resposta}`);
+    //     });
+
 
     function abrirModalNovaCoreo() {
         fundoModal.style.display = "block";
