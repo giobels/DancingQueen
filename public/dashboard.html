@@ -105,7 +105,11 @@
                 <canvas id="graficoEvolucao" class="grafico"></canvas>
             </div>
             <div class="container-grafico">
+                <span class="titulo-grafico">Análise de Desempenho</span>
                 <canvas id="graficoPontuacao" class="grafico"></canvas>
+                <br>
+                <span class="titulo-select">Coreografia:</span>
+                <select id="select_coreoPonto" onchange="obterDadosGrafico()"></select>
             </div>
         </div>
     </div>
@@ -113,7 +117,7 @@
 
 </html>
 
-<script>
+<!-- <script>
     const labels = [
         'Janeiro',
         'Fevereiro',
@@ -191,11 +195,16 @@
         config3)
 
 
-</script>
+</script> -->
 
 <script>
 
     titulo.innerHTML = `${sessionStorage.NOME_USUARIO}'s Journey`
+
+    let proximaAtualizacao;
+
+    listar();
+    obterDadosGrafico();
 
     let coreopcao = true;
     function opcaoCoreo1() {
@@ -267,6 +276,8 @@
 
     }
 
+    let listarFirstCall = 0;
+
     function listar() {
         const fkUsuario = sessionStorage.ID_USUARIO;
 
@@ -284,10 +295,23 @@
             if (resposta.ok) {
                 console.log(resposta);
 
+                let uno = 0;
+
                 resposta.json().then((coreo) => {
                     coreo.forEach((coreografia) => {
                         select_coreografia.innerHTML += `<option value='${coreografia.idCoreografia}'>${coreografia.coreografia}</option>`;
+
+                        if (listarFirstCall == 0) {
+                           if(uno ==0){
+                               select_coreoPonto.innerHTML = '<option disabled selected>Selecione uma coreografia</option>';
+                               uno =1;
+                           }
+                                select_coreoPonto.innerHTML += `<option value='${coreografia.idCoreografia}'>${coreografia.coreografia}</option>`;
+                            
+                                var p = coreografia.idCoreografia;
+                        }
                     });
+                    listarFirstCall = 1;
                 });
 
             } else {
@@ -302,22 +326,6 @@
 
         return false;
     }
-
-
-    // fetch("/coreo/listar", {
-    //     method: "GET",
-    // })
-    //     .then(function (resposta) {
-    //         resposta.json().then((coreo) => {
-    //             coreo.forEach((coreografia) => {
-    //                 select_coreografia.innerHTML += `<option value='${coreografia.idCoreografia}'>${coreografia.coreografia}</option>`;
-    //             });
-    //         });
-    //     })
-    //     .catch(function (resposta) {
-    //         console.log(`#ERRO: ${resposta}`);
-    //     });
-
 
     function abrirModalNovaCoreo() {
         fundoModal.style.display = "block";
@@ -346,4 +354,180 @@
         fundoModal.style.display = "none";
         modalFestival.style.display = "none";
     }
+
+
+    // O gráfico é construído com três funções:
+    // 1. obterDadosGrafico -> Traz dados do Banco de Dados para montar o gráfico da primeira vez
+    // 2. plotarGrafico -> Monta o gráfico com os dados trazidos e exibe em tela
+    // 3. atualizarGrafico -> Atualiza o gráfico, trazendo novamente dados do Banco
+
+    // Esta função *obterDadosGrafico* busca os últimos dados inseridos em tabela de medidas.
+    // para, quando carregar o gráfico da primeira vez, já trazer com vários dados.
+    // A função *obterDadosGrafico* também invoca a função *plotarGrafico*
+
+    //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
+    //     Para ajustar o "select", ajuste o comando sql em src/models
+    function obterDadosGrafico() {
+        let fkcoreo = select_coreoPonto.value;
+
+        if (proximaAtualizacao != undefined) {
+            clearTimeout(proximaAtualizacao);
+        }
+
+        fetch(`/medidas/ultimas`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cache: 'no-store',
+            body: JSON.stringify({
+                fkcoreoServer: fkcoreo,
+            })
+        }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    plotarGrafico(resposta, fkcoreo);
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
+    // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
+    // A função *plotarGrafico* também invoca a função *atualizarGrafico*
+    let firtsplot = 0;
+    function plotarGrafico(resposta, idCoreografia) {
+
+        console.log('iniciando plotagem do gráfico...');
+
+        // Criando estrutura para plotar gráfico - labels
+        let labels = [];
+
+        // Criando estrutura para plotar gráfico - dados
+        let dados = {
+            labels: labels,
+            datasets: [{
+                label: 'Nota',
+                data: [],
+                borderColor: 'rgb(75, 192, 192)',
+                backgroundColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
+        };
+
+        console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+        console.log(resposta)
+
+        // Inserindo valores recebidos em estrutura para plotar o gráfico
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            labels.push(registro.data_grafico);
+            dados.datasets[0].data.push(registro.nota);
+        }
+
+        console.log('----------------------------------------------')
+        console.log('O gráfico será plotado com os respectivos valores:')
+        console.log('Labels:')
+        console.log(labels)
+        console.log('Dados:')
+        console.log(dados.datasets)
+        console.log('----------------------------------------------')
+
+        // Criando estrutura para plotar gráfico - config
+        const config3 = {
+            type: 'line',
+            data: dados,
+            options: {
+                plugins: {
+                    // title: {
+                    //     display: true,
+                    //     text: 'Pontuação '
+                    // }
+                }
+            }
+        };
+
+        if (firtsplot == 0) {
+            const graficoPontuacao = new Chart(
+                document.getElementById('graficoPontuacao'),
+                config3)
+
+            firtsplot = 1;
+        } else {
+            
+            let chartStatus = Chart.getChart("graficoPontuacao")
+            chartStatus.destroy()
+
+            graficoPontuacao = new Chart(
+                document.getElementById('graficoPontuacao'),
+                config3)
+            }
+
+
+        // setTimeout(() => atualizarGrafico(idCoreografia, dados, graficoPontuacao), 2000);
+    }
+
+    // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
+    // buscando a última medida inserida em tabela contendo as capturas, 
+
+    //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
+    //     Para ajustar o "select", ajuste o comando sql em src/models
+    function atualizarGrafico(idCoreografia, dados, graficoPontuacao) {
+
+        // fetch(`/medidas/tempo-real/${idCoreografia}`, { cache: 'no-store' }).then(function (response) {
+        //     if (response.ok) {
+        //         response.json().then(function (novoRegistro) {
+
+        //             obterdados(idCoreografia);
+        //             // alertar(novoRegistro, idAquario);
+        //             console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+        //             console.log(`Dados atuais do gráfico:`);
+        //             console.log(dados);
+
+
+        //             if (novoRegistro[0].data_grafico == dados.labels[dados.labels.length - 1]) {
+        //                 console.log("---------------------------------------------------------------")
+        //                 console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+        //                 console.log("Data do novo dado capturado:")
+        //                 console.log(novoRegistro[0].data_grafico)
+        //                 console.log("Data do último dado capturado:")
+        //                 console.log(dados.labels[dados.labels.length - 1])
+        //                 console.log("---------------------------------------------------------------")
+        //             } else {
+        //                 // tirando e colocando valores no gráfico
+        //                 dados.labels.shift(); // apagar o primeiro
+        //                 dados.labels.push(novoRegistro[0].data_grafico); // incluir um novo momento
+
+        //                 dados.datasets[0].data.shift();  // apagar o primeiro de umidade
+        //                 dados.datasets[0].data.push(novoRegistro[0].nota); // incluir uma nova medida de umidade
+
+        //                 graficoPontuacao.update();
+        //             }
+
+        //             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+        //             proximaAtualizacao = setTimeout(() => atualizarGrafico(idCoreografia, dados, graficoPontuacao), 2000);
+        //         });
+        //     } else {
+        //         console.error('Nenhum dado encontrado ou erro na API');
+        //         // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+        //         proximaAtualizacao = setTimeout(() => atualizarGrafico(idCoreografia, dados, graficoPontuacao), 2000);
+        //     }
+        // })
+        //     .catch(function (error) {
+        //         console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        //     });
+
+    }
+
+   
 </script>

@@ -20,7 +20,7 @@ var usuarioRouter = require("./src/routes/usuarios");
 var coreoRouter = require("./src/routes/coreo");
 var festivalRouter = require("./src/routes/festival");
 // var avisosRouter = require("./src/routes/avisos");
-// var medidasRouter = require("./src/routes/medidas");
+var medidasRouter = require("./src/routes/medidas");
 // var aquariosRouter = require("./src/routes/aquarios");
 // var empresasRouter = require("./src/routes/empresas");
 
@@ -35,7 +35,7 @@ app.use("/usuarios", usuarioRouter);
 app.use("/coreo" , coreoRouter);
 app.use("/festival" , festivalRouter);
 // app.use("/avisos", avisosRouter);
-// app.use("/medidas", medidasRouter);
+app.use("/medidas", medidasRouter);
 // app.use("/aquarios", aquariosRouter);
 // app.use("/empresas", empresasRouter);
 

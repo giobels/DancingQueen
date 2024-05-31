@@ -25,7 +25,7 @@ constraint fkUsuarioCoreografia foreign key (fkUsuario) references Usuario (idUs
 create table Festival(
 idFestival int auto_increment,
 festival varchar(45) not null,
-data date not null,
+dataFestival date not null,
 nota decimal(10,2) not null,
 fkCoreografia int,
 
@@ -36,6 +36,12 @@ select*from usuario;
 select*from Coreografia;
 select*from Festival;
 
-
+SELECT  
+nota,
+dataFestival,
+DATE_FORMAT(dataFestival,'%d/%m/%Y') as data_grafico
+FROM festival
+WHERE fkCoreografia = 1
+ORDER BY fkCoreografia DESC LIMIT 7;
 
 
