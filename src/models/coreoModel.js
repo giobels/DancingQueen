@@ -20,14 +20,19 @@ function listar(fkUsuario) {
   return database.executar(instrucaoSql);
 }
 
-// function buscarPorFk(fkUsuario) {
-//   var instrucaoSql = `SELECT * FROM Coreografia WHERE fkUsuario = ${fkUsuario}`;
+function listarKpi(fkUsuario) {
+  var instrucaoSql = `select coreografia,
+  round(avg(nota),1) as media
+  from festival
+  inner join coreografia on fkCoreografia = idCoreografia
+  where fkUsuario = ${fkUsuario}
+  group by fkCoreografia;`;
 
-//   return database.executar(instrucaoSql);
-// }
+  return database.executar(instrucaoSql);
+}
 
 module.exports = {
   cadastrar,
   listar,
-  // buscarPorFk,
+  listarKpi,
 };

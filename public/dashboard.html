@@ -91,8 +91,14 @@
             <span id="titulo"></span>
 
             <div class="kpis">
-                <div class="kpi">aaaaa</div>
-                <div class="kpi">aaaaa</div>
+                <div class="kpi">
+                    <span class="titulo-kpi">Melhor Desempenho</span>
+                    <span class="kpi-info" id="kpiMelhorDesempenho"></span>
+                </div>
+                <div class="kpi">
+                    <span class="titulo-kpi">Coreografia a praticar</span>
+                    <span class="kpi-info" id="kpiPiorDesempenho"></span>
+                </div>
                 <div class="kpi">aaaaa</div>
             </div>
             <div class="container-grafico">
@@ -205,6 +211,7 @@
 
     listar();
     obterDadosGrafico();
+    listarKpi();
 
     let coreopcao = true;
     function opcaoCoreo1() {
@@ -302,13 +309,13 @@
                         select_coreografia.innerHTML += `<option value='${coreografia.idCoreografia}'>${coreografia.coreografia}</option>`;
 
                         if (listarFirstCall == 0) {
-                           if(uno ==0){
-                               select_coreoPonto.innerHTML = '<option disabled selected>Selecione uma coreografia</option>';
-                               uno =1;
-                           }
-                                select_coreoPonto.innerHTML += `<option value='${coreografia.idCoreografia}'>${coreografia.coreografia}</option>`;
-                            
-                                var p = coreografia.idCoreografia;
+                            if (uno == 0) {
+                                select_coreoPonto.innerHTML = '<option disabled selected>Selecione uma coreografia</option>';
+                                uno = 1;
+                            }
+                            select_coreoPonto.innerHTML += `<option value='${coreografia.idCoreografia}'>${coreografia.coreografia}</option>`;
+
+                            var p = coreografia.idCoreografia;
                         }
                     });
                     listarFirstCall = 1;
@@ -326,6 +333,64 @@
 
         return false;
     }
+
+    function listarKpi() {
+        const fkUsuario = sessionStorage.ID_USUARIO;
+
+        fetch("/coreo/listarKpi", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                fkusuarioServer: fkUsuario,
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO listarKpi()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                let maiorMedia = 0;
+                let menorMedia = 0;
+                let melhorCoreo = 0;
+                let piorCoreo = 0;
+
+                resposta.json().then((coreo) => {
+                    coreo.forEach((coreografia) => {
+                        if(maiorMedia==0){
+                            maiorMedia = coreografia.media;
+                            melhorCoreo = coreografia.coreografia;
+                            menorMedia = coreografia.media;
+                            piorCoreo = coreografia.coreografia;
+                        }else{
+                            if(maiorMedia < coreografia.media){
+                                maiorMedia = coreografia.media;
+                                melhorCoreo = coreografia.coreografia;
+                            }else if(menorMedia > coreografia.media){
+                                menorMedia = coreografia.media;
+                                piorCoreo = coreografia.coreografia;
+                            }
+                        }
+                    });
+                    kpiMelhorDesempenho.innerHTML = melhorCoreo + '<span> Média:'+ maiorMedia + '</span>';
+                    kpiPiorDesempenho.innerHTML = piorCoreo + '<span> Média:'+ menorMedia + '</span>';
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
 
     function abrirModalNovaCoreo() {
         fundoModal.style.display = "block";
@@ -464,14 +529,14 @@
 
             firtsplot = 1;
         } else {
-            
+
             let chartStatus = Chart.getChart("graficoPontuacao")
             chartStatus.destroy()
 
             graficoPontuacao = new Chart(
                 document.getElementById('graficoPontuacao'),
                 config3)
-            }
+        }
 
 
         // setTimeout(() => atualizarGrafico(idCoreografia, dados, graficoPontuacao), 2000);
@@ -529,5 +594,5 @@
 
     }
 
-   
+
 </script>

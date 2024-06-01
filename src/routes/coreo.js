@@ -12,12 +12,9 @@ router.post("/listar", function (req, res) {
     coreoController.listar(req, res);
 });
 
-// router.post("/listar", function (req, res) {
-//     coreoController.listar(req, res);
-// });
+router.post("/listarKpi", function (req, res) {
+    coreoController.listarKpi(req, res);
+});
 
-// router.get("/listar/:fkUsuario", function (req, res) {
-//     coreoController.listar(req, res);
-// });
 
 module.exports = router;

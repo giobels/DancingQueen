@@ -36,6 +36,29 @@ select*from usuario;
 select*from Coreografia;
 select*from Festival;
 
+insert into usuario(nome,email,senha)
+values('Giovanna','giovanna@gmail.com','123456');
+
+insert into coreografia(coreografia, categoria, fkUsuario)
+values('INK','flexibilidade',1),
+('Gisele','forca',1),
+('Kitri','tecnica',1),
+('Cisne','expressao',1);
+
+insert into festival(festival,dataFestival,nota,fkCoreografia)
+values('A','2024-01-01',5,1),
+('A','2024-03-03',8,1),
+('A','2024-02-02',10,1),
+('B','2024-01-01',7,2),
+('B','2024-02-02',4,2),
+('B','2024-03-03',10,2),
+('C','2024-01-01',7,3),
+('C','2024-02-02',6,3),
+('C','2024-03-03',9,3),
+('D','2024-01-01',7,4),
+('D','2024-02-02',8,4),
+('D','2024-03-03',5,4);
+
 SELECT  
 nota,
 dataFestival,
@@ -45,3 +68,9 @@ WHERE fkCoreografia = 1
 ORDER BY fkCoreografia DESC LIMIT 7;
 
 
+select coreografia,
+round(avg(nota),1) as media
+from festival
+inner join coreografia on fkCoreografia = idCoreografia
+where fkUsuario = 1
+group by fkCoreografia;

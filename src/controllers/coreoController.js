@@ -59,9 +59,24 @@ function listar(req, res) {
 
 }
 
+function listarKpi(req, res) {
+    var fkUsuario = req.body.fkusuarioServer;
+
+    if (fkUsuario == undefined) {
+        // res.status(400).send("o Usuario está undefined!");
+        console.log('Usuario undefined')
+    } else {
+
+        coreoModel.listarKpi(fkUsuario).then((resultado) => {
+            res.status(200).json(resultado);
+        });
+    }
+
+}
+
 
 module.exports = {
     cadastrar,
     listar,
-    // buscarPorFk,
+    listarKpi,
 }
