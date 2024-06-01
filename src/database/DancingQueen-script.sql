@@ -72,5 +72,5 @@ select coreografia,
 round(avg(nota),1) as media
 from festival
 inner join coreografia on fkCoreografia = idCoreografia
-where fkUsuario = 1
-group by fkCoreografia;
+where fkUsuario = 3
+group by coreografia;

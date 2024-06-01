@@ -20,14 +20,10 @@ function buscarUltimasMedidas(req, res) {
     });
 }
 
+function buscarDesempenho(req, res) {
+    var fkusuario = req.body.fkusuarioServer;
 
-function buscarMedidasEmTempoReal(req, res) {
-
-    var idAquario = req.params.idAquario;
-
-    console.log(`Recuperando medidas em tempo real`);
-
-    medidaModel.buscarMedidasEmTempoReal(idAquario).then(function (resultado) {
+    medidaModel.buscarDesempenho(fkusuario).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -40,8 +36,8 @@ function buscarMedidasEmTempoReal(req, res) {
     });
 }
 
+
 module.exports = {
     buscarUltimasMedidas,
-    buscarMedidasEmTempoReal
-
+    buscarDesempenho,
 }

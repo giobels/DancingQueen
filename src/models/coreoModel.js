@@ -26,7 +26,7 @@ function listarKpi(fkUsuario) {
   from festival
   inner join coreografia on fkCoreografia = idCoreografia
   where fkUsuario = ${fkUsuario}
-  group by fkCoreografia;`;
+  group by coreografia;`;
 
   return database.executar(instrucaoSql);
 }

@@ -7,8 +7,9 @@ router.post("/ultimas", function (req, res) {
     medidaController.buscarUltimasMedidas(req, res);
 });
 
-// router.get("/tempo-real/:idAquario", function (req, res) {
-//     medidaController.buscarMedidasEmTempoReal(req, res);
-// })
+router.post("/desempenho", function (req, res) {
+    medidaController.buscarDesempenho(req, res);
+});
+
 
 module.exports = router;
