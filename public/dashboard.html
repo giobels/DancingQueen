@@ -109,6 +109,7 @@
         </div>
         <div class="lateral">
             <div class="container-grafico">
+                <span class="titulo-grafico">Habilidades</span>
                 <canvas id="graficoEvolucao" class="grafico"></canvas>
             </div>
             <div class="container-grafico">
@@ -124,86 +125,6 @@
 
 </html>
 
-<!-- <script>
-    const labels = [
-        'Janeiro',
-        'Fevereiro',
-        'Março',
-        'Abril',
-        'Maio',
-        'Junho',
-    ];
-
-    const data = {
-        labels: labels,
-        datasets: [{
-            label: 'My firt dataset',
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: [0, 10, 5, 2, 20, 30, 45],
-        },
-        {
-            label: 'My firt dataset2',
-            backgroundColor: 'rgb(132, 99, 255)',
-            borderColor: 'rgb(132, 99, 255)',
-            data: [10, 20, 15, 12, 30, 40, 55],
-        }]
-    };
-
-    const config = {
-        type: 'bar',
-        data: data,
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Custom Chart Title'
-                }
-            }
-        }
-    };
-
-    const config2 = {
-        type: 'radar',
-        data: data,
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Custom Chart Title'
-                }
-            }
-        }
-    };
-
-    const config3 = {
-        type: 'line',
-        data: data,
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Custom Chart Title'
-                }
-            }
-        }
-    };
-
-    const graficoDesempenho = new Chart(
-        document.getElementById('graficoDesempenho'),
-        config)
-
-    const graficoEvolucao = new Chart(
-        document.getElementById('graficoEvolucao'),
-        config2)
-
-    const graficoPontuacao = new Chart(
-        document.getElementById('graficoPontuacao'),
-        config3)
-
-
-</script> -->
-
 <script>
 
     titulo.innerHTML = `${sessionStorage.NOME_USUARIO}'s Journey`
@@ -213,6 +134,7 @@
     listar();
     obterDadosGraficoPontuacao();
     obterDadosGraficoDesempenho();
+    obterDadosGraficoHabilidade()
     listarKpi();
 
     let coreopcao = true;
@@ -602,6 +524,113 @@
         const graficoDesempenho = new Chart(
             document.getElementById('graficoDesempenho'),
             config)
+    }
+
+    // ------------------------------------------------------------------------------------
+
+    function obterDadosGraficoHabilidade() {
+        let fkusuario = sessionStorage.ID_USUARIO;
+
+        if (proximaAtualizacao != undefined) {
+            clearTimeout(proximaAtualizacao);
+        }
+
+        fetch(`/medidas/habilidade`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cache: 'no-store',
+            body: JSON.stringify({
+                fkusuarioServer: fkusuario,
+            })
+        }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    plotarGraficoHabilidade(resposta, fkusuario);
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function plotarGraficoHabilidade(resposta, fkusuario) {
+
+        console.log('iniciando plotagem do gráfico...');
+
+        // Criando estrutura para plotar gráfico - labels
+        let labels = [];
+
+        // Criando estrutura para plotar gráfico - dados
+        let dados = {
+            labels: [
+                'Flexibilidade',
+                'Força',
+                'Técnica',
+                'Expressão',
+            ],
+            datasets: [{
+                backgroundColor: [
+                    '#e095958f',
+                    '#9de29d85',
+                    '#bb97e08c',
+                    '#89b3dc86',
+                ],
+                borderColor: [
+                    '#E09595',
+                    '#9DE29D',
+                    '#BB97E0',
+                    '#89B3DC',
+                ],
+                data: [],
+                tension: 0.1
+            }]
+        };
+
+        console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+        console.log(resposta)
+
+        // Inserindo valores recebidos em estrutura para plotar o gráfico
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            labels.push(registro.categoria);
+            dados.datasets[0].data.push(registro.media);
+        }
+
+        console.log('----------------------------------------------')
+        console.log('O gráfico será plotado com os respectivos valores:')
+        console.log('Labels:')
+        console.log(labels)
+        console.log('Dados:')
+        console.log(dados.datasets)
+        console.log('----------------------------------------------')
+
+        // Criando estrutura para plotar gráfico - config
+        const config2 = {
+        type: 'pie',
+        data: dados,
+        options: {
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                },
+
+            }
+        }
+    };
+
+        const graficoEvolucao = new Chart(
+            document.getElementById('graficoEvolucao'),
+            config2)
     }
 
 </script>

@@ -28,8 +28,22 @@ function buscarDesempenho(fkusuario) {
     return database.executar(instrucaoSql);
 }
 
+function buscarHabilidade(fkusuario) {
+
+    var instrucaoSql = `select categoria,
+    round(avg(nota),2) as media
+    from coreografia
+    inner join festival on fkCoreografia = idCoreografia
+    where fkUsuario = ${fkusuario}
+    group by categoria`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 
 module.exports = {
     buscarUltimasMedidas,
     buscarDesempenho,
+    buscarHabilidade,
 }

@@ -64,13 +64,44 @@ nota,
 dataFestival,
 DATE_FORMAT(dataFestival,'%d/%m/%Y') as data_grafico
 FROM festival
-WHERE fkCoreografia = 1
-ORDER BY fkCoreografia DESC LIMIT 7;
+WHERE fkCoreografia = 8
+ORDER BY fkCoreografia DESC LIMIT 4;
 
 
 select coreografia,
 round(avg(nota),1) as media
 from festival
 inner join coreografia on fkCoreografia = idCoreografia
-where fkUsuario = 3
+where fkUsuario = 1
 group by coreografia;
+
+select categoria,
+round(avg(nota),2) as media
+from coreografia
+inner join festival on fkCoreografia = idCoreografia
+where fkUsuario = 1
+group by categoria;
+
+insert into coreografia(coreografia, categoria, fkUsuario)
+values('Copélia','flexibilidade',1),
+('Pássaro Azul','forca',1),
+('Esmeralda','tecnica',1),
+('Paquita','expressao',1);
+
+
+insert into festival(festival,dataFestival,nota,fkCoreografia)
+values('A','2024-01-01',5,6),
+('A','2024-03-03',8,8),
+('A','2024-02-02',10,7),
+('B','2024-01-01',7,6),
+('B','2024-02-02',4,7),
+('B','2024-03-03',10,5),
+('C','2024-01-01',7,6),
+('C','2024-02-02',6,5),
+('C','2024-03-03',9,8),
+('D','2024-01-01',7,8),
+('D','2024-02-02',8,7),
+('D','2024-03-03',5,5);
+
+insert into festival(festival,dataFestival,nota,fkCoreografia)
+values('A','2024-01-01',10,8);

@@ -11,5 +11,8 @@ router.post("/desempenho", function (req, res) {
     medidaController.buscarDesempenho(req, res);
 });
 
+router.post("/habilidade", function (req, res) {
+    medidaController.buscarHabilidade(req, res);
+});
 
 module.exports = router;
