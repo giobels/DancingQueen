@@ -40,10 +40,10 @@ insert into usuario(nome,email,senha)
 values('Giovanna','giovanna@gmail.com','123456');
 
 insert into coreografia(coreografia, categoria, fkUsuario)
-values('INK','flexibilidade',1),
-('Gisele','forca',1),
-('Kitri','tecnica',1),
-('Cisne','expressao',1);
+values('INK','Flexibilidade',1),
+('Gisele','Força',1),
+('Kitri','Técnica',1),
+('Cisne','Expressão',1);
 
 insert into festival(festival,dataFestival,nota,fkCoreografia)
 values('A','2024-01-01',5,1),
@@ -83,10 +83,10 @@ where fkUsuario = 1
 group by categoria;
 
 insert into coreografia(coreografia, categoria, fkUsuario)
-values('Copélia','flexibilidade',1),
-('Pássaro Azul','forca',1),
-('Esmeralda','tecnica',1),
-('Paquita','expressao',1);
+values('Copélia','Flexibilidade',1),
+('Pássaro Azul','Força',1),
+('Esmeralda','Técnica',1),
+('Paquita','Expressão',1);
 
 
 insert into festival(festival,dataFestival,nota,fkCoreografia)

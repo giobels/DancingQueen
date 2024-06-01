@@ -26,10 +26,10 @@
                     <span>Categoria</span>
                     <select class="inputCoreo" id="input_categoria">
                         <option disabled selected>Selecione uma categoria</option>
-                        <option value="flexibilidade">Flexibilidade</option>
-                        <option value="forca">Força</option>
-                        <option value="tecnica">Técnica</option>
-                        <option value="expressao">Expressão</option>
+                        <option value="Flexibilidade">Flexibilidade</option>
+                        <option value="Força">Força</option>
+                        <option value="Técnica">Técnica</option>
+                        <option value="Expressão">Expressão</option>
                     </select>
                 </div>
             </div>
@@ -99,13 +99,17 @@
                     <span class="titulo-kpi">Desempenho inferior</span>
                     <span class="kpi-info" id="kpiPiorDesempenho"></span>
                 </div>
-                <div class="kpi">aaaaa</div>
+                <div class="kpi">
+                    <span class="titulo-kpi">Habilidade para treino</span>
+                    <span class="kpi-info" id="kpiHabilidade"></span>
+                </div>
             </div>
             <div class="container-grafico">
                 <span class="titulo-grafico">Desempenho Geral</span>
                 <canvas id="graficoDesempenho" class="grafico"></canvas>
             </div>
 
+            
         </div>
         <div class="lateral">
             <div class="container-grafico">
@@ -185,7 +189,10 @@
 
         if (festival == '' || data == '' || nota == '' || !coreo) {
             alert('Preencha todos os campos para continuar!')
-        } else {
+        } else if (nota < 0 || nota > 10) {
+            alert('Insira uma nota de 0 a 10.')
+        }
+        else {
             fetch("/festival/cadastrar", {
                 method: "POST",
                 headers: {
@@ -275,34 +282,40 @@
             if (resposta.ok) {
                 console.log(resposta);
 
-
                 let maiorMedia = 0;
-                let menorMedia = 0;
+                let menorMedia = 100;
                 let melhorCoreo = 0;
                 let piorCoreo = 0;
 
+                
                 resposta.json().then((coreo) => {
-
+                    
                     coreo.forEach((coreografia) => {
-                        if (maiorMedia == 0) {
-                            maiorMedia = coreografia.media;
-                            melhorCoreo = coreografia.coreografia;
-                            menorMedia = coreografia.media;
-                            piorCoreo = coreografia.coreografia;
-                        } else {
-                            if (coreografia.media > maiorMedia) {
-                                maiorMedia = coreografia.media;
-                                melhorCoreo = coreografia.coreografia;
-                            } else if (coreografia.media < menorMedia) {
-                                menorMedia = coreografia.media;
-                                piorCoreo = coreografia.coreografia;
-                            }
-                        }
+                       let coreo =  coreografia.coreografia
+                       let media =  coreografia.media
+
+                       if(maiorMedia == 0 ){
+                        maiorMedia = media
+                        melhorCoreo = coreo
+                        menorMedia = media
+                        piorCoreo = coreo
+                       }else if(media == 10){
+                        maiorMedia = media
+                        melhorCoreo = coreo
+                       }
+                       else if(media > maiorMedia){
+                        maiorMedia = media
+                        melhorCoreo = coreo
+                       }else if(media < menorMedia) {
+                        menorMedia = media
+                        piorCoreo = coreo
+                       }
+
                     });
                     kpiMelhorDesempenho.innerHTML = melhorCoreo + '<span> Média:' + maiorMedia + '</span>';
                     kpiPiorDesempenho.innerHTML = piorCoreo + '<span> Média:' + menorMedia + '</span>';
                 });
-
+                
 
             } else {
 
@@ -394,8 +407,8 @@
             datasets: [{
                 label: 'Nota',
                 data: [],
-                borderColor: 'rgb(75, 192, 192)',
-                backgroundColor: 'rgb(75, 192, 192)',
+                borderColor: '#E09595',
+                backgroundColor: '#E09595',
                 tension: 0.1
             }]
         };
@@ -490,8 +503,8 @@
             datasets: [{
                 label: 'Desempenho',
                 data: [],
-                borderColor: 'rgb(75, 192, 192)',
-                backgroundColor: 'rgb(75, 192, 192)',
+                borderColor: '#89B3DC',
+                backgroundColor: '#89b3dcd3',
                 tension: 0.1
             }]
         };
@@ -545,12 +558,28 @@
                 fkusuarioServer: fkusuario,
             })
         }).then(function (response) {
+            let habilidade = 0;
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
 
                     plotarGraficoHabilidade(resposta, fkusuario);
+
+                    let habilidade = 0;
+                    let menor = 0;
+                    resposta.forEach((categoria) => {
+                        if (habilidade == 0) {
+                            habilidade = categoria.categoria
+                            menor = categoria.media
+                        } else {
+                            if (categoria.media < menor) {
+                                habilidade = categoria.categoria
+                                menor = categoria.media
+                            }
+                        }
+                    });
+                    kpiHabilidade.innerHTML = habilidade
 
                 });
             } else {
@@ -572,10 +601,10 @@
         // Criando estrutura para plotar gráfico - dados
         let dados = {
             labels: [
-                'Flexibilidade',
-                'Força',
-                'Técnica',
                 'Expressão',
+                'Técnica',
+                'Força',
+                'Flexibilidade',
             ],
             datasets: [{
                 backgroundColor: [
@@ -616,17 +645,17 @@
 
         // Criando estrutura para plotar gráfico - config
         const config2 = {
-        type: 'pie',
-        data: dados,
-        options: {
-            plugins: {
-                legend: {
-                    position: 'bottom',
-                },
+            type: 'pie',
+            data: dados,
+            options: {
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    },
 
+                }
             }
-        }
-    };
+        };
 
         const graficoEvolucao = new Chart(
             document.getElementById('graficoEvolucao'),
