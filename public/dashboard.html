@@ -70,7 +70,7 @@
     <header>
         <nav>
             <ul class="navbar">
-                <li class="nav-links"> <img src="assets/logout.png">Sair</li>
+                <li class="nav-links" onclick="encerrarSessao()"> <img src="assets/logout.png">Sair</li>
                 <a href="https://suportedancingqueen.hipporello.net/desk?">
                     <li class="nav-links"> <img src="assets/config.png"> Suporte</li>
                 </a>
@@ -109,7 +109,7 @@
                 <canvas id="graficoDesempenho" class="grafico"></canvas>
             </div>
 
-            
+
         </div>
         <div class="lateral">
             <div class="container-grafico">
@@ -132,8 +132,6 @@
 <script>
 
     titulo.innerHTML = `${sessionStorage.NOME_USUARIO}'s Journey`
-
-    let proximaAtualizacao;
 
     listar();
     obterDadosGraficoPontuacao();
@@ -287,35 +285,35 @@
                 let melhorCoreo = 0;
                 let piorCoreo = 0;
 
-                
-                resposta.json().then((coreo) => {
-                    
-                    coreo.forEach((coreografia) => {
-                       let coreo =  coreografia.coreografia
-                       let media =  coreografia.media
 
-                       if(maiorMedia == 0 ){
-                        maiorMedia = media
-                        melhorCoreo = coreo
-                        menorMedia = media
-                        piorCoreo = coreo
-                       }else if(media == 10){
-                        maiorMedia = media
-                        melhorCoreo = coreo
-                       }
-                       else if(media > maiorMedia){
-                        maiorMedia = media
-                        melhorCoreo = coreo
-                       }else if(media < menorMedia) {
-                        menorMedia = media
-                        piorCoreo = coreo
-                       }
+                resposta.json().then((coreo) => {
+
+                    coreo.forEach((coreografia) => {
+                        let coreo = coreografia.coreografia
+                        let media = coreografia.media
+
+                        if (maiorMedia == 0) {
+                            maiorMedia = media
+                            melhorCoreo = coreo
+                            menorMedia = media
+                            piorCoreo = coreo
+                        } else if (media == 10) {
+                            maiorMedia = media
+                            melhorCoreo = coreo
+                        }
+                        else if (media > maiorMedia) {
+                            maiorMedia = media
+                            melhorCoreo = coreo
+                        } else if (media < menorMedia) {
+                            menorMedia = media
+                            piorCoreo = coreo
+                        }
 
                     });
                     kpiMelhorDesempenho.innerHTML = melhorCoreo + '<span> Média:' + maiorMedia + '</span>';
                     kpiPiorDesempenho.innerHTML = piorCoreo + '<span> Média:' + menorMedia + '</span>';
                 });
-                
+
 
             } else {
 
@@ -361,10 +359,6 @@
 
     function obterDadosGraficoPontuacao() {
         let fkcoreo = select_coreoPonto.value;
-
-        if (proximaAtualizacao != undefined) {
-            clearTimeout(proximaAtualizacao);
-        }
 
         fetch(`/medidas/ultimas`, {
             method: "POST",
@@ -459,10 +453,6 @@
     function obterDadosGraficoDesempenho() {
         let fkusuario = sessionStorage.ID_USUARIO;
 
-        if (proximaAtualizacao != undefined) {
-            clearTimeout(proximaAtualizacao);
-        }
-
         fetch(`/medidas/desempenho`, {
             method: "POST",
             headers: {
@@ -543,10 +533,6 @@
 
     function obterDadosGraficoHabilidade() {
         let fkusuario = sessionStorage.ID_USUARIO;
-
-        if (proximaAtualizacao != undefined) {
-            clearTimeout(proximaAtualizacao);
-        }
 
         fetch(`/medidas/habilidade`, {
             method: "POST",
@@ -662,4 +648,8 @@
             config2)
     }
 
+
+    function encerrarSessao() {
+        window.location = 'login.html'
+    }
 </script>

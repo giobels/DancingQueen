@@ -35,17 +35,12 @@
         <div class="cisne">
             <img src="assets/pena2.svg" id="penae1" class="pena">
             <img src="assets/pena1.svg" id="penad1" class="pena">
-            <span class="titulo-branco">Corpore Sano</span>
+            <span class="titulo-branco">Bem Vindo Bailarino(a)!</span>
             <p class="texto-branco">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Phasellus lorem enim, lacinia vel volutpat ac, molestie non magna.
-                Morbi tempus, nunc vel auctor imperdiet, velit metus vehicula est,
-                at tempus metus lectus in nisi. Aenean egestas nulla dui, a condim
-                entum tortor facilisis at. Phasellus egestas suscipit dictum.
-                Cras venenatis, odio vel porta tempus, elit mi porta dui, non volutpat
-                dolor augue auctor nunc. Sed eget dictum enim.
+                A <b>DancingQueen</b> é uma plataforma criada especialmente para aqueles que são conectados e apaixonados por dançar, e que desejam aprimorar suas habilidades ou iniciar na prática.
+                Seja uma bailarina profissional, estudante ou um entusiasta, <b>aqui você que dita o ritmo da dança!</b> Mantenha o controle do seu progresso, e encontre caminhos para aprimorar suas habilidades. Desfrute dos benefícios personalizados da plataforma para bailarinos e bailarinas de todos os tipos.
             </p>
-            <button class="botao-branco"><span class="botao-anim">Saiba mais</span></button>
+            <a onclick="transicaoCadastro()"><button class="botao-branco"><span class="botao-anim">Faça parte!</span></button></a>
             <img src="assets/pena3.svg" id="penad2" class="pena">
             <img src="assets/pena1.svg" id="penae2" class="pena">
             <img src="assets/pena2.svg" id="penad3" class="pena">
@@ -58,15 +53,9 @@
             <!-- <img src="img/pena1branca.png" id="penabrancae1"  class="pena"> -->
             <img src="assets/pena2branca.png" id="penabrancad1" class="pena">
             <span class="titulo-negro">Corpore Sano</span>
-            <p class="texto-negro">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Phasellus lorem enim, lacinia vel volutpat ac, molestie non magna.
-                Morbi tempus, nunc vel auctor imperdiet, velit metus vehicula est,
-                at tempus metus lectus in nisi. Aenean egestas nulla dui, a condim
-                entum tortor facilisis at. Phasellus egestas suscipit dictum.
-                Cras venenatis, odio vel porta tempus, elit mi porta dui, non volutpat
-                dolor augue auctor nunc. Sed eget dictum enim.
+            <p class="texto-negro">Mens sana in corpore sano. Mente sã em corpo são, este é o efeito da dança, faz com que corpo e mente atuem em harmonia. O projeto reconhece os diversos benefícios de dançar, e acredita no seu potencial de transformação. Foi pela paixão a arte que surgiu este projeto impulsionado pelo desejo de promover o bem-estar físico e mental através do movimento.
             </p>
-            <button class="botao-negro"><span class="botao-anim">Corpore</span></button>
+            <button class="botao-negro"><span class="botao-anim">Saiba Mais</span></button>
             <img src="assets/pena3branca.png" id="penabrancae2" class="pena">
             <img src="assets/pena1branca.png" id="penabrancad2" class="pena">
             <img src="assets/pena2branca.png" id="penabrancae3" class="pena">
@@ -104,23 +93,12 @@
         document.querySelector('div').classList.add("active")
         setTimeout(function(){window.location = 'login.html'},1000)
       
-        }
-            
+    }
 
-    // const p = document.querySelector("#penae1")
-    // function estaVisivel() {
-    //     const posicoes = p.getBoundingClientRect();
-    //     const inicio = posicoes.top;
-    //     const fim = posicoes.bottom;
-    //     let estaVisivel = false
-    
-    //     if ((inicio >= 0) && (fim <= window.innerHeight)) {
-        //         estaVisivel = true;
-        //     }
-        
-        //     return estaVisivel;
-        
-        // }
-        // s console.log(estaVisivel(p))
+    function transicaoCadastro() {
+        document.querySelector('div').classList.add("activec")
+        setTimeout(function () { window.location = 'cadastro.html' }, 1000)
+    }
+            
 
 </script>
