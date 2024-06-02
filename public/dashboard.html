@@ -37,6 +37,23 @@
         </div>
     </div>
 
+    <div class="modal" id="modalDeletarCoreo">
+        <div class="containerModal">
+            <img src="assets/botao-x.png" class="botaoFechar" onclick="fecharModalDeletarCoreo()">
+            <span>Deletar Coreografia</span>
+            <div class="inputsModal">
+                <div class="inputModal">
+                    <span>Coreografia</span>
+                    <select class="inputCoreo" id="select_deletarCoreo">
+
+                    </select>
+                </div>
+            </div>
+            <button class="botaoModal" onclick="deletarCoreo()">Deletar</button>
+        </div>
+    </div>
+
+
     <div class="modal" id="modalFestival">
         <div class="containerModal">
             <img src="assets/botao-x.png" class="botaoFechar" onclick="fecharModalFestival()">
@@ -82,6 +99,7 @@
         <div id="opcaoCoreo">
             <ul id="listOpcaoCoreo">
                 <li onclick="abrirModalNovaCoreo()">Nova Coreografia</li>
+                <li onclick="abrirModalDeletarCoreo()">Deletar Coreografia</li>
                 <li onclick="abrirModalFestival()">Festival</li>
             </ul>
         </div>
@@ -143,8 +161,8 @@
     function opcaoCoreo1() {
 
         if (coreopcao) {
-            opcaoCoreo.style.height = "100px";
-            setTimeout(function () { listOpcaoCoreo.style.display = "flex" }, 150);
+            opcaoCoreo.style.height = "110px";
+            setTimeout(function () { listOpcaoCoreo.style.display = "flex" }, 230);
 
             coreopcao = false;
         } else {
@@ -185,7 +203,7 @@
         const nota = input_notafestival.value.trim();
         const coreo = select_coreografia.value;
 
-        if (festival == '' || data == '' || nota == '' || !coreo) {
+        if (festival == '' || data == '' || nota == '' || coreo==0) {
             alert('Preencha todos os campos para continuar!')
         } else if (nota < 0 || nota > 10) {
             alert('Insira uma nota de 0 a 10.')
@@ -211,6 +229,40 @@
         }
 
     }
+
+    function deletarCoreo() {
+        let fkcoreo = select_deletarCoreo.value;
+
+        if (fkcoreo==0) {
+            alert('Selecione uma coreografia para deletar')
+        } else {
+            fetch("/coreo/deletar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    coreoServer: fkcoreo,
+
+                }),
+            })
+
+            fetch("/coreo/deletarCoreo", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    coreoServer: fkcoreo,
+
+                }),
+            })
+
+            alert('Coreografia Deletada')
+
+        }
+    }
+    
 
     let listarFirstCall = 0;
 
@@ -239,12 +291,12 @@
 
                         if (listarFirstCall == 0) {
                             if (uno == 0) {
-                                select_coreoPonto.innerHTML = '<option disabled selected>Selecione uma coreografia</option>';
+                                select_coreoPonto.innerHTML = '<option disabled selected value="0">Selecione uma coreografia</option>';
+                                select_deletarCoreo.innerHTML = '<option disabled selected value="0">Selecione uma coreografia</option>';
                                 uno = 1;
                             }
                             select_coreoPonto.innerHTML += `<option value='${coreografia.idCoreografia}'>${coreografia.coreografia}</option>`;
-
-                            var p = coreografia.idCoreografia;
+                            select_deletarCoreo.innerHTML += `<option value='${coreografia.idCoreografia}'>${coreografia.coreografia}</option>`;
                         }
                     });
                     listarFirstCall = 1;
@@ -341,6 +393,21 @@
         fundoModal.style.display = "none";
         modalNovaCoreo.style.display = "none";
     }
+
+    function abrirModalDeletarCoreo() {
+        fundoModal.style.display = "block";
+        modalDeletarCoreo.style.display = "flex";
+        opcaoCoreo.style.height = "0px";
+        listOpcaoCoreo.style.display = 'none';
+        coreopcao = true;
+    }
+
+
+    function fecharModalDeletarCoreo() {
+        fundoModal.style.display = "none";
+        modalDeletarCoreo.style.display = "none";
+    }
+
 
     function abrirModalFestival() {
         select_coreografia.innerHTML = '<option disabled selected>Selecione uma coreografia</option>';
@@ -627,13 +694,13 @@
             // labels.push(registro.categoria);
             let categoria = registro.categoria
             let plot;
-            if(categoria == 'Expressão'){
+            if (categoria == 'Expressão') {
                 plot = plotExpressao;
-            } else if(categoria == 'Técnica'){
+            } else if (categoria == 'Técnica') {
                 plot = plotTecnica;
-            }else if(categoria == 'Força'){
+            } else if (categoria == 'Força') {
                 plot = plotForca;
-            }else {
+            } else {
                 plot = plotFlex;
             }
             dados.datasets[0].data[plot] = registro.media;

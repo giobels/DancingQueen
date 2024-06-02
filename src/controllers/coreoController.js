@@ -35,14 +35,33 @@ function cadastrar(req, res) {
     }
 }
 
-// function buscarPorFk(req, res) {
-//     var fkUsuario = req.params.fkUsuario;
+function deletar(req, res) {
+    var fkcoreo = req.body.coreoServer;
 
-//     coreoModel.buscarPorFk(fkUsuario).then((resultado) => {
-//         res.status(200).json(resultado);
-//     });
-// }
+    if (fkcoreo == undefined) {
+        console.log('fkcoreoundefined')
+    } else {
 
+        coreoModel.deletar(fkcoreo).then((resultado) => {
+            res.status(200).json(resultado);
+        });
+    }
+
+}
+
+function deletarCoreo(req, res) {
+    var fkcoreo = req.body.coreoServer;
+
+    if (fkcoreo == undefined) {
+        console.log('fkcoreoundefined')
+    } else {
+
+        coreoModel.deletarCoreo(fkcoreo).then((resultado) => {
+            res.status(200).json(resultado);
+        });
+    }
+
+}
 
 function listar(req, res) {
     var fkUsuario = req.body.fkusuarioServer;
@@ -79,4 +98,6 @@ module.exports = {
     cadastrar,
     listar,
     listarKpi,
+    deletar,
+    deletarCoreo,
 }

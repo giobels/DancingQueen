@@ -64,7 +64,7 @@ nota,
 dataFestival,
 DATE_FORMAT(dataFestival,'%d/%m/%Y') as data_grafico
 FROM festival
-WHERE fkCoreografia = 8
+WHERE fkCoreografia = 1
 ORDER BY fkCoreografia DESC LIMIT 4;
 
 
@@ -105,3 +105,13 @@ values('A','2024-01-01',5,6),
 
 insert into festival(festival,dataFestival,nota,fkCoreografia)
 values('A','2024-01-01',10,8);
+
+delete from festival
+where fkCoreografia = 1;
+delete from coreografia 
+where idCoreografia = 1;
+
+DELETE FROM festival, coreografia 
+using festival, coreografia
+where festival.fkCoreografia = 1 AND 
+coreografia.idCoreografia =1;

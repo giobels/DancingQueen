@@ -68,17 +68,18 @@ nav img {
     border-radius: 10px;
     transition: 0.5s;
     cursor: pointer;
+    padding-left: 5px;
 }
 
 #listOpcaoCoreo {
     display: none;
     flex-direction: column;
     justify-content: space-between;
-    list-style: none;
     align-items: flex-start;
     padding-left: 20px;
     font-size: 20px;
-    text-decoration: underline 0.5px #646464;
+    /* text-decoration: underline 0.5px #646464; */
+    gap: 4px;
 }
 
 .modal {

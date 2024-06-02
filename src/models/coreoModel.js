@@ -31,8 +31,24 @@ function listarKpi(fkUsuario) {
   return database.executar(instrucaoSql);
 }
 
+function deletar(fkcoreo) {
+  var instrucaoSql = `delete from festival
+  where fkCoreografia = ${fkcoreo};`;
+
+  return database.executar(instrucaoSql);
+}
+
+function deletarCoreo(fkcoreo){
+  var instrucaoSql = `delete from coreografia 
+  where idCoreografia = ${fkcoreo};`;
+
+  return database.executar(instrucaoSql);
+}
+
 module.exports = {
   cadastrar,
   listar,
   listarKpi,
+  deletar,
+  deletarCoreo,
 };

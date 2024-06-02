@@ -8,6 +8,14 @@ router.post("/cadastrar", function (req, res) {
     coreoController.cadastrar(req, res);
 })
 
+router.post("/deletar", function (req, res) {
+    coreoController.deletar(req, res);
+})
+
+router.post("/deletarCoreo", function (req, res) {
+    coreoController.deletarCoreo(req, res);
+})
+
 router.post("/listar", function (req, res) {
     coreoController.listar(req, res);
 });
