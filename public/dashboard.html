@@ -280,17 +280,17 @@
             if (resposta.ok) {
                 console.log(resposta);
 
-                let maiorMedia = 0;
-                let menorMedia = 100;
-                let melhorCoreo = 0;
-                let piorCoreo = 0;
 
 
                 resposta.json().then((coreo) => {
+                    let maiorMedia = 0;
+                    let menorMedia = 100;
+                    let melhorCoreo = 0;
+                    let piorCoreo = 0;
 
                     coreo.forEach((coreografia) => {
                         let coreo = coreografia.coreografia
-                        let media = coreografia.media
+                        let media = Number(coreografia.media)
 
                         if (maiorMedia == 0) {
                             maiorMedia = media
@@ -304,7 +304,8 @@
                         else if (media > maiorMedia) {
                             maiorMedia = media
                             melhorCoreo = coreo
-                        } else if (media < menorMedia) {
+                        }
+                        else if (media < menorMedia) {
                             menorMedia = media
                             piorCoreo = coreo
                         }
@@ -552,16 +553,17 @@
 
                     plotarGraficoHabilidade(resposta, fkusuario);
 
-                    let habilidade = 0;
-                    let menor = 0;
+                    let habilidade;
+                    let menor;
                     resposta.forEach((categoria) => {
-                        if (habilidade == 0) {
+                        let mediaC = Number(categoria.media)
+                        if (habilidade == undefined) {
                             habilidade = categoria.categoria
-                            menor = categoria.media
+                            menor = mediaC
                         } else {
-                            if (categoria.media < menor) {
+                            if (mediaC < menor) {
                                 habilidade = categoria.categoria
-                                menor = categoria.media
+                                menor = mediaC
                             }
                         }
                     });
@@ -615,10 +617,26 @@
         console.log(resposta)
 
         // Inserindo valores recebidos em estrutura para plotar o gráfico
+        let plotExpressao = 0;
+        let plotTecnica = 1;
+        let plotForca = 2;
+        let plotFlex = 3;
+
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
-            labels.push(registro.categoria);
-            dados.datasets[0].data.push(registro.media);
+            // labels.push(registro.categoria);
+            let categoria = registro.categoria
+            let plot;
+            if(categoria == 'Expressão'){
+                plot = plotExpressao;
+            } else if(categoria == 'Técnica'){
+                plot = plotTecnica;
+            }else if(categoria == 'Força'){
+                plot = plotForca;
+            }else {
+                plot = plotFlex;
+            }
+            dados.datasets[0].data[plot] = registro.media;
         }
 
         console.log('----------------------------------------------')

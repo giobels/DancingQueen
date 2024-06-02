@@ -19,7 +19,7 @@
                     <li class="nav-links">Home</li>
                 </a>
                 <a href="">
-                    <li class="nav-links">Sobre mim</li>
+                    <li class="nav-links">Saiba Mais</li>
                 </a>
                 <a href="">
                     <li class="nav-links">Corpore</li>
@@ -29,7 +29,7 @@
                 </a>
             </ul>
         </nav>
-        <img class="fundo-header" src="assets/home.jpg" />
+        <img class="fundo-header" src="assets/home.jpg" id="imagemFundo"/>
     </header>
     <div class="container">
         <div class="cisne">
@@ -37,8 +37,12 @@
             <img src="assets/pena1.svg" id="penad1" class="pena">
             <span class="titulo-branco">Bem Vindo Bailarino(a)!</span>
             <p class="texto-branco">
-                A <b>DancingQueen</b> é uma plataforma criada especialmente para aqueles que são conectados e apaixonados por dançar, e que desejam aprimorar suas habilidades ou iniciar na prática.
-                Seja uma bailarina profissional, estudante ou um entusiasta, <b>aqui você que dita o ritmo da dança!</b> Mantenha o controle do seu progresso, e encontre caminhos para aprimorar suas habilidades. Desfrute dos benefícios personalizados da plataforma para bailarinos e bailarinas de todos os tipos.
+                A <b>DancingQueen</b> é uma plataforma criada especialmente para aqueles que são conectados e
+                apaixonados
+                por dançar, e que desejam aprimorar suas habilidades ou iniciar na prática.
+                Seja uma bailarina profissional, estudante ou um entusiasta, <b>aqui você que dita o ritmo da dança!</b>
+                Mantenha o controle do seu progresso, e encontre caminhos para aprimorar suas habilidades. Desfrute dos
+                benefícios personalizados da plataforma para bailarinos e bailarinas de todos os tipos.
             </p>
             <a onclick="transicaoCadastro()"><button class="botao-branco"><span class="botao-anim">Faça parte!</span></button></a>
             <img src="assets/pena3.svg" id="penad2" class="pena">
@@ -53,7 +57,11 @@
             <!-- <img src="img/pena1branca.png" id="penabrancae1"  class="pena"> -->
             <img src="assets/pena2branca.png" id="penabrancad1" class="pena">
             <span class="titulo-negro">Corpore Sano</span>
-            <p class="texto-negro">Mens sana in corpore sano. Mente sã em corpo são, este é o efeito da dança, faz com que corpo e mente atuem em harmonia. O projeto reconhece os diversos benefícios de dançar, e acredita no seu potencial de transformação. Foi pela paixão a arte que surgiu este projeto impulsionado pelo desejo de promover o bem-estar físico e mental através do movimento.
+            <p class="texto-negro">Mens sana in corpore sano. Mente sã em corpo são, este é o efeito da dança, faz com
+                que
+                corpo e mente atuem em harmonia. O projeto reconhece os diversos benefícios de dançar, e acredita no seu
+                potencial de transformação. Foi pela paixão a arte que surgiu este projeto impulsionado pelo desejo de
+                promover o bem-estar físico e mental através do movimento.
             </p>
             <button class="botao-negro"><span class="botao-anim">Saiba Mais</span></button>
             <img src="assets/pena3branca.png" id="penabrancae2" class="pena">
@@ -62,20 +70,21 @@
         </div>
         <footer>
             <div class="links">
-               <a href="https://github.com/giobels"><img src="assets/github.png"></a> 
-                <a href="https://www.linkedin.com/in/giovanna-beltr%C3%A3o-854b832b1/"><img src="assets/logotipo-do-linkedin.png"></a>    
+                <a href="https://github.com/giobels"><img src="assets/github.png"></a>
+                <a href="https://www.linkedin.com/in/giovanna-beltr%C3%A3o-854b832b1/"><img
+                        src="assets/logotipo-do-linkedin.png"></a>
             </div>
             <span>
-                Developed by Giovanna Beltrão  &copy 2024
+                Developed by Giovanna Beltrão &copy 2024
             </span>
         </footer>
     </div>
 </body>
 
 </html>
-<img src="" alt="">
+
 <script>
-    
+
     function menuScroll() {
         const scroll = window.scrollY;
         if (scroll > 0) {
@@ -86,19 +95,19 @@
             document.querySelector('#logo').src = "assets/logoBranco.png"
         }
     }
-    document.addEventListener('scroll', menuScroll) 
-    
+    document.addEventListener('scroll', menuScroll)
 
-    function transicaoLogin(){
+
+    function transicaoLogin() {
         document.querySelector('div').classList.add("active")
-        setTimeout(function(){window.location = 'login.html'},1000)
-      
+        setTimeout(function () { window.location = 'login.html' }, 1000)
+
     }
 
     function transicaoCadastro() {
         document.querySelector('div').classList.add("activec")
         setTimeout(function () { window.location = 'cadastro.html' }, 1000)
     }
-            
+
 
 </script>
