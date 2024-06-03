@@ -24,23 +24,23 @@
 
             <div class="info-cadastro">
                 <span class="titulo-input-cadastro">Nome</span>
-                <input class="input-cadastro" type="text" id="input_nome">
+                <input class="input-cadastro" type="text" id="input_nome" placeholder="user">
             </div>
 
 
             <div class="info-cadastro">
                 <span class="titulo-input-cadastro">E-mail</span>
-                <input class="input-cadastro" type="text" id="input_email">
+                <input class="input-cadastro" type="text" id="input_email" placeholder="user@gmail.com">
             </div>
 
             <div class="info-cadastro">
                 <span class="titulo-input-cadastro">Senha</span>
-                <input class="input-cadastro" type="password" id="input_senha">
+                <input class="input-cadastro" type="password" id="input_senha" placeholder=" 6 dígitos e um número">
             </div>
 
             <div class="info-cadastro">
                 <span class="titulo-input-cadastro">Confirmar Senha</span>
-                <input class="input-cadastro" type="password" id="input_confirmarSenha">
+                <input class="input-cadastro" type="password" id="input_confirmarSenha" placeholder="repetir senha">
             </div>
 
             <div class="outros-cadastro">
@@ -69,9 +69,9 @@
         const confirmarSenha = input_confirmarSenha.value;
 
         let temNumero = true;
-        for(let contador = 0; contador <= senha.length -1; contador++ ){
+        for (let contador = 0; contador <= senha.length - 1; contador++) {
             let numeroSenha = Number(senha[contador]);
-            if(numeroSenha){
+            if (numeroSenha) {
                 temNumero = false;
             }
         }

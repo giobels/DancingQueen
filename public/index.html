@@ -18,11 +18,8 @@
                 <a href="index.html">
                     <li class="nav-links">Home</li>
                 </a>
-                <a href="">
+                <a onclick="transicaoSaiba()">
                     <li class="nav-links">Saiba Mais</li>
-                </a>
-                <a href="">
-                    <li class="nav-links">Corpore</li>
                 </a>
                 <a onclick="transicaoLogin()">
                     <li class="nav-links">Login/Cadastro</li>
@@ -63,7 +60,7 @@
                 potencial de transformação. Foi pela paixão a arte que surgiu este projeto impulsionado pelo desejo de
                 promover o bem-estar físico e mental através do movimento.
             </p>
-            <button class="botao-negro"><span class="botao-anim">Saiba Mais</span></button>
+            <button class="botao-negro"><span class="botao-anim" onclick="transicaoSaiba()">Saiba Mais</span></button>
             <img src="assets/pena3branca.png" id="penabrancae2" class="pena">
             <img src="assets/pena1branca.png" id="penabrancad2" class="pena">
             <img src="assets/pena2branca.png" id="penabrancae3" class="pena">
@@ -109,5 +106,10 @@
         setTimeout(function () { window.location = 'cadastro.html' }, 1000)
     }
 
+    function transicaoSaiba() {
+        document.querySelector('div').classList.add("active")
+        setTimeout(function () { window.location = 'saibamais.html' }, 1000)
+
+    }
 
 </script>

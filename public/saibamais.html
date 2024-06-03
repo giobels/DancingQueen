@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DancingQueen - Saiba Mais</title>
+    <link rel="shortcut icon" href="assets/icon.png">
+    <link rel="stylesheet" href="css/saibamais.css">
+</head>
+
+<body>
+    <div class="transicao"></div>
+    <header>
+        <nav>
+            <a onclick="transicaoHome()"><img id="logo" src="assets/logoBranco.png" /></a>
+            <ul class="navbar">
+                <a onclick="transicaoHome()">
+                    <li class="nav-links">Home</li>
+                </a>
+                <a href="">
+                    <li class="nav-links">Saiba Mais</li>
+                </a>
+                <a onclick="transicaoLogin()">
+                    <li class="nav-links">Login/Cadastro</li>
+                </a>
+            </ul>
+        </nav>
+    </header>
+    <img src="assets/fundopena.png" id="fundo">
+    <br><br><br><br><br><br><br><br><br>
+    <center> <img src="assets/logoBranco.png" id="intro"></center>
+    <center>
+        <div class="container">
+            <span class="titulo">Sobre o Projeto</span>
+            <div class="section">
+                <div class="linhaDaVida">
+                    <div class="titp">
+                        <span class="titulo">Linha da Vida</span>
+                        <p class="paragrafo">Em algum momento da minha vida, um que eu não sei mensurar ao certo, a
+                            dança
+                            deixou
+                            de ser uma prática e
+                            se tornou parte de mim, é difícil dizer quem eu teria me tornado ao longo do tempo se não
+                            tivesse
+                            insistido em dançar, sempre que paro para pensar todos os aspectos da minha personalidade
+                            foram
+                            influenciados de alguma forma, e não é para menos afinal são 12 anos de prática.
+                        </p>
+                    </div>
+                    <img src="assets/eu.png" class="imagemEu">
+                </div>
+            </div>
+            <div class="section">
+                <div class="linhaDaVida">
+                    <img src="assets/eu2.png" class="imagemEu">
+                    <div class="titp">
+                        <span class="titulo">Valores</span>
+                        <ul class="paragrafo">
+                            <li><b>Mens sana in Corpore sano</b> - A dança e seu poder de transfromar o ser, onde corpo
+                                e mente se entrelaçam e florescem.
+                            </li><br>
+                            <li><b>Resiliência</b> - A dança é uma arte que exige treino e determinação, desenvolve a
+                                capacidade de expressão, superação de desafios e encontra beleza nas adversidades.
+                            </li><br>
+                            <li><b>Ética</b> - Sócrates, um dos grandes filósofos gregos, através de Platão em Leis VII,
+                                considerou a Dança
+                                como a atividade que formava o cidadão por completo.
+
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <span class="titulo">Objetivos da ONU</span>
+                <br><br>
+                <div class="sectione">
+                    <img src="assets/saudebemestar.png">
+                    <img src="assets/educacaoqualidade.png">
+                </div>
+            </div>
+        </div>
+    </center>
+</body>
+
+</html>
+
+<script>
+    window.onload = function () {
+        setTimeout(document.querySelector('div').classList.add("active"), 1000)
+    }
+
+    function transicaoLogin() {
+        document.querySelector('div').classList.remove("active")
+        setTimeout(function () { window.location = 'login.html' }, 1000)
+
+    }
+
+    function transicaoHome() {
+        document.querySelector('div').classList.remove("active")
+        setTimeout(function () { window.location = 'index.html' }, 1000)
+    }
+</script>
