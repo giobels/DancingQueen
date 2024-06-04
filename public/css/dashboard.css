@@ -82,6 +82,54 @@ nav img {
     gap: 4px;
 }
 
+#opcaoDash {
+    width: 200px;
+    height: 0px;
+    background-color: rgb(252, 249, 255);
+    position: absolute;
+    display: flex;
+    left: 430px;
+    top: 50px;
+    border-radius: 10px;
+    transition: 0.5s;
+    cursor: pointer;
+    padding-left: 5px;
+}
+
+#listOpcaoDash {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-left: 20px;
+    font-size: 20px;
+    gap: 4px;
+}
+
+#opcaoSuporte {
+    width: 200px;
+    height: 0px;
+    background-color: rgb(252, 249, 255);
+    position: absolute;
+    display: flex;
+    left: 200px;
+    top: 50px;
+    border-radius: 10px;
+    transition: 0.5s;
+    cursor: pointer;
+    padding-left: 5px;
+}
+
+#listOpcaoSuporte {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-left: 20px;
+    font-size: 20px;
+    gap: 4px;
+}
+
 .modal {
     width: 100vw;
     height: 100vh;
@@ -228,7 +276,7 @@ nav img {
 
 a {
     text-decoration: none;
-    color: #BCBCBC;
+    color: #1E1E1E;
 }
 
 .titulo-grafico {
