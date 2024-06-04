@@ -29,7 +29,8 @@
         <video src="assets/Poesia em movimento.mp4" class="fundo-header" autoplay muted loop></video>
         <!-- <img class="fundo-header" src="assets/home.jpg" id="imagemFundo"/> -->
     </header>
-
+    <button onclick="playPause()" id="play"><audio src="assets/lago dos cisnes.mp3"></audio><span id="mus">Tocar
+            Música</span></button>
     <div class="container">
         <div class="cisne">
             <img src="assets/pena2.svg" id="penae1" class="pena">
@@ -75,7 +76,7 @@
                         src="assets/logotipo-do-linkedin.png"></a>
             </div>
             <span>
-                Developed by Giovanna Beltrão &copy 2024
+                DancingQueen developed by Giovanna Beltrão &copy 2024
             </span>
         </footer>
     </div>
@@ -114,5 +115,21 @@
         setTimeout(function () { window.location = 'saibamais.html' }, 1000)
 
     }
+
+    let tocando = false;
+    function playPause() {
+        // let musica = new Audio('assets/lago dos cisnes.mp3')
+        let musica = document.getElementById("play").children[0];
+        if (tocando) {
+            musica.pause()
+            mus.innerHTML = 'Tocar Música'
+        } else {
+            musica.play()
+            mus.innerHTML = 'Pausar Música'
+        }
+        tocando = !tocando
+    }
+
+
 
 </script>
