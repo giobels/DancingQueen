@@ -7,7 +7,7 @@ function buscarUltimasMedidas(fkcoreo, limite_linhas) {
     nota,
     dataFestival,
     DATE_FORMAT(dataFestival,'%d/%m/%Y') as data_grafico
-    FROM festival
+    FROM Festival
     WHERE fkCoreografia = ${fkcoreo}
     ORDER BY fkCoreografia DESC LIMIT ${limite_linhas}; `;
 
@@ -19,8 +19,8 @@ function buscarDesempenho(fkusuario) {
 
     var instrucaoSql = `select coreografia,
     round(avg(nota),1) as media
-    from festival
-    inner join coreografia on fkCoreografia = idCoreografia
+    from Festival
+    inner join Coreografia on fkCoreografia = idCoreografia
     where fkUsuario = ${fkusuario}
     group by coreografia`;
 
@@ -32,8 +32,8 @@ function buscarHabilidade(fkusuario) {
 
     var instrucaoSql = `select categoria,
     round(avg(nota),2) as media
-    from coreografia
-    inner join festival on fkCoreografia = idCoreografia
+    from Coreografia
+    inner join Festival on fkCoreografia = idCoreografia
     where fkUsuario = ${fkusuario}
     group by categoria`;
 

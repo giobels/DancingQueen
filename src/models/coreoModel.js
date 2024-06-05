@@ -23,8 +23,8 @@ function listar(fkUsuario) {
 function listarKpi(fkUsuario) {
   var instrucaoSql = `select coreografia,
   round(avg(nota),1) as media
-  from festival
-  inner join coreografia on fkCoreografia = idCoreografia
+  from Festival
+  inner join Coreografia on fkCoreografia = idCoreografia
   where fkUsuario = ${fkUsuario}
   group by coreografia;`;
 
@@ -32,14 +32,14 @@ function listarKpi(fkUsuario) {
 }
 
 function deletar(fkcoreo) {
-  var instrucaoSql = `delete from festival
+  var instrucaoSql = `delete from Festival
   where fkCoreografia = ${fkcoreo};`;
 
   return database.executar(instrucaoSql);
 }
 
 function deletarCoreo(fkcoreo){
-  var instrucaoSql = `delete from coreografia 
+  var instrucaoSql = `delete from Coreografia 
   where idCoreografia = ${fkcoreo};`;
 
   return database.executar(instrucaoSql);

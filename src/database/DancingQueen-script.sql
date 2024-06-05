@@ -32,20 +32,20 @@ fkCoreografia int,
 constraint pkFestival primary key (idFestival),
 constraint fkCoreografiaFestival foreign key (fkCoreografia) references Coreografia(idCoreografia));
 
-select*from usuario;
+select*from Usuario;
 select*from Coreografia;
 select*from Festival;
 
-insert into usuario(nome,email,senha)
+insert into Usuario(nome,email,senha)
 values('Giovanna','giovanna@gmail.com','123456');
 
-insert into coreografia(coreografia, categoria, fkUsuario)
+insert into Coreografia(coreografia, categoria, fkUsuario)
 values('INK','Flexibilidade',1),
 ('Gisele','Força',1),
 ('Kitri','Técnica',1),
 ('Cisne','Expressão',1);
 
-insert into festival(festival,dataFestival,nota,fkCoreografia)
+insert into Festival(festival,dataFestival,nota,fkCoreografia)
 values('A','2024-01-01',5,1),
 ('A','2024-03-03',8,1),
 ('A','2024-02-02',10,1),
