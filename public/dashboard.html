@@ -96,6 +96,41 @@
         </div>
     </div>
 
+    <div class="modal" id="modalManual">
+        <div class="containerModal">
+            <img src="assets/botao-x.png" class="botaoFechar" onclick="fecharModalManual()">
+            <span>Como usar a Dashboard</span>
+            <br>
+            <span class="paragrafo">Bem Vindo Bailarino(a)!</span>
+            <br>
+            <span class="paragrafo">
+                A DancingQueen tem o bjetivo de te auxiliar em sua jornada com a dança, mantendo seu progresso de
+                desempenho e análise detalhada.
+                Para começar na aba de coreografia, selecione a opção nova coreografia, preencha todos os campos, com o
+                nome da coreografia que você dança/treina e a categoria ou tipo de habilidade que ela mais desenvolve.
+                Logo a seguir, ao selecionar Festivais na aba de Coreografia você pode cadastrar todas suas
+                apresentações, seja em festivais, seleções, espetáculos ou apenas treinos, como preferir, selecione a
+                coreografia apresentada e preencha as demais informações.
+                Pronto! Agora a Dashboard vai te mostrar tudo que você precisa saber sobre seu desempenho, mantenha seu
+                progresso e evolua cada vez mais!
+            </span>
+            <br>
+            <span class="paragrafo">
+                Você também pode consultar as aulas da Marina Bailarina pelo atalho das Aulas, um exelente conteúdo para
+                aprimorar suas habilidades! Aproveite!
+                Caso você tenha alguma dúvida ou problema através da aba de suporte na central de suporte você pode
+                abrir um chamado para a equipe que fornecerá auxilio o mais rápido possível, ou consultar a QueenAI (mas
+                use com sabedoria).
+            </span>
+            <br>
+            <span class="paragrafo">
+                A arte se revela a cada passo!
+            </span>
+
+        </div>
+    </div>
+
+
     <header>
         <nav>
             <ul class="navbar">
@@ -116,7 +151,9 @@
         <div id="opcaoDash">
             <ul id="listOpcaoDash">
                 <li onclick="abrirModalManual()">Manual de uso</li>
-                <a href="https://www.youtube.com/@MarinaBailarina"><li>Aulas</li></a>
+                <a href="https://www.youtube.com/@MarinaBailarina">
+                    <li>Aulas</li>
+                </a>
             </ul>
         </div>
         <div id="opcaoSuporte">
@@ -218,7 +255,7 @@
     function opcaoDash1() {
 
         if (dashopcao) {
-            opcaoDash.style.height = "110px";
+            opcaoDash.style.height = "100px";
             setTimeout(function () { listOpcaoDash.style.display = "flex" }, 230);
 
             dashopcao = false;
@@ -303,6 +340,15 @@
         modalFestival.style.display = "none";
     }
 
+    function abrirModalManual() {
+        fundoModal.style.display = "block";
+        modalManual.style.display = "flex";
+    }
+
+    function fecharModalManual() {
+        fundoModal.style.display = "none";
+        modalManual.style.display = "none";
+    }
 
     function novaCoreo() {
         const coreografia = input_coreografia.value.trim();
