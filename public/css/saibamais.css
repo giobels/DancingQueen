@@ -110,7 +110,7 @@ nav.active .nav-links::before {
     display: flex;
     flex-direction: column;
     width: 80%;
-    background-color: #111111;
+    background-color: #000000;
     position: relative;
     z-index: 1;
     top: 400px;
@@ -128,6 +128,7 @@ nav.active .nav-links::before {
     color: #cdcddf;
     font-size: 27px;
     line-height: 35px;
+    padding: 20px;
 }
 
 .titulo{
