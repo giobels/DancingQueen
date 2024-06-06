@@ -314,3 +314,8 @@ a {
 .paragrafo{
     font-size: 20px;
 }
+
+.validacao{
+    font-size: 20px;
+    color: red;
+}

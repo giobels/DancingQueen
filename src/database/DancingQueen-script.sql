@@ -1,7 +1,7 @@
 create database DancingQueen;
 use DancingQueen;
 
--- drop database dancingqueen;
+-- drop database DancingQueen;
 
 create table Usuario(
 idUsuario int auto_increment,
@@ -37,10 +37,10 @@ select*from Coreografia;
 select*from Festival;
 
 insert into Usuario(nome,email,senha)
-values('Giovanna','giovanna@gmail.com','123456');
+values('Giovanna','giovanna@gmail.com','1giobe');
 
 insert into Coreografia(coreografia, categoria, fkUsuario)
-values('INK','Flexibilidade',1),
+values
 ('Gisele','Força',1),
 ('Kitri','Técnica',1),
 ('Cisne','Expressão',1);
@@ -54,10 +54,7 @@ values('A','2024-01-01',5,1),
 ('B','2024-03-03',10,2),
 ('C','2024-01-01',7,3),
 ('C','2024-02-02',6,3),
-('C','2024-03-03',9,3),
-('D','2024-01-01',7,4),
-('D','2024-02-02',8,4),
-('D','2024-03-03',5,4);
+('C','2024-03-03',9,3);
 
 SELECT  
 nota,
@@ -82,29 +79,17 @@ inner join festival on fkCoreografia = idCoreografia
 where fkUsuario = 1
 group by categoria;
 
-insert into coreografia(coreografia, categoria, fkUsuario)
-values('Copélia','Flexibilidade',1),
-('Pássaro Azul','Força',1),
-('Esmeralda','Técnica',1),
-('Paquita','Expressão',1);
+insert into Coreografia(coreografia, categoria, fkUsuario)
+values('Copélia','Flexibilidade',1);
 
 
-insert into festival(festival,dataFestival,nota,fkCoreografia)
-values('A','2024-01-01',5,6),
-('A','2024-03-03',8,8),
-('A','2024-02-02',10,7),
-('B','2024-01-01',7,6),
-('B','2024-02-02',4,7),
-('B','2024-03-03',10,5),
-('C','2024-01-01',7,6),
-('C','2024-02-02',6,5),
-('C','2024-03-03',9,8),
-('D','2024-01-01',7,8),
-('D','2024-02-02',8,7),
-('D','2024-03-03',5,5);
+insert into Festival(festival,dataFestival,nota,fkCoreografia)
+values('A','2024-01-01',5,4),
+('A','2024-03-03',8,4),
+('A','2024-02-02',10,4);
 
-insert into festival(festival,dataFestival,nota,fkCoreografia)
-values('A','2024-01-01',10,8);
+insert into Festival(festival,dataFestival,nota,fkCoreografia)
+values('A','2024-01-01',10,3);
 
 delete from festival
 where fkCoreografia = 1;

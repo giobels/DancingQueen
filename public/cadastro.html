@@ -47,7 +47,7 @@
                 <a onclick="transicaoLogin()"><span class="outro-cadastro">Já tem cadastro? Entrar</span></a>
             </div>
 
-
+            <span class="outros-cadastro-mensagem" id="mensagem"></span>
             <button onclick="cadastrar()" class="botao-cadastro"><span>Cadastrar</span></button>
 
         </div>
@@ -77,22 +77,29 @@
         }
 
         if (nome == '' || email == '' || senha == '' || confirmarSenha == '') {
-            alert('Preencha todos os campos para continuar');
+            mensagem.style.color = 'red'
+            mensagem.innerHTML = 'Preencha todos os campos para continuar'
+            setTimeout(function () { mensagem.innerHTML = '' }, 1000)
         }
         else if (nome.length > 20) {
-            alert('O nome deve ter no máximo 20 caractéres')
+            mensagem.innerHTML = 'O nome deve ter no máximo 20 caractéres'
+            setTimeout(function () { mensagem.innerHTML = '' }, 1000)
         }
         else if (email.indexOf('@') == -1 || email.endsWith('@') || email.indexOf('.') == -1) {
-            alert('Insira um e-mail válido')
+            mensagem.innerHTML = 'Insira um e-mail válido'
+            setTimeout(function () { mensagem.innerHTML = '' }, 1000)
         }
         else if (senha.length > 6 || senha.length < 6) {
-            alert('A senha deve ter 6 caractéres e pelo menos um número')
+            mensagem.innerHTML = 'A senha deve ter 6 caractéres e pelo menos um número'
+            setTimeout(function () { mensagem.innerHTML = '' }, 1000)
         }
         else if (temNumero) {
-            alert('A senha deve ter 6 caractéres e pelo menos um número')
+            mensagem.innerHTML = 'A senha deve ter 6 caractéres e pelo menos um número'
+            setTimeout(function () { mensagem.innerHTML = '' }, 1000)
         }
         else if (senha != confirmarSenha) {
-            alert('A confirmação de senha não confere com a senha inserida')
+            mensagem.innerHTML = 'A confirmação de senha não confere com a senha inserida'
+            setTimeout(function () { mensagem.innerHTML = '' }, 1000)
         }
         else {
 
@@ -110,7 +117,8 @@
 
                 if (resposta.ok) {
                     console.log(resposta);
-                    alert('Este usuário já foi cadastrado!')
+                    mensagem.innerHTML = 'Este usuário já foi cadastrado!'
+                    setTimeout(function () { mensagem.innerHTML = '' }, 1000)
 
                 } else {
                     alert('Cadastro realizado com sucesso! Você será redirecionado a página de login.')

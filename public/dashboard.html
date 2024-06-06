@@ -33,6 +33,7 @@
                     </select>
                 </div>
             </div>
+            <span class="validacao" id="mensagemcoreo"></span>
             <button class="botaoModal" onclick="novaCoreo()">Criar</button>
         </div>
     </div>
@@ -49,6 +50,7 @@
                     </select>
                 </div>
             </div>
+            <span class="validacao" id="mensagemdeletar"></span>
             <button class="botaoModal" onclick="deletarCoreo()">Deletar</button>
         </div>
     </div>
@@ -92,6 +94,7 @@
                 </div>
 
             </div>
+            <span class="validacao" id="mensagemfestival"></span>
             <button class="botaoModal" onclick="cadastrarFestival()">Criar</button>
         </div>
     </div>
@@ -356,7 +359,8 @@
         const fkUsuario = sessionStorage.ID_USUARIO;
 
         if (coreografia == '' || categoria == '') {
-            alert('Insira uma coreografia a categoria válida.')
+            mensagemcoreo.innerHTML = 'Preencha todos os campos'
+            setTimeout(function () { mensagemcoreo.innerHTML = '' }, 1000)
         } else {
             fetch("/coreo/cadastrar", {
                 method: "POST",
@@ -381,9 +385,11 @@
         const coreo = select_coreografia.value;
 
         if (festival == '' || data == '' || nota == '' || coreo == 0) {
-            alert('Preencha todos os campos para continuar!')
+            mensagemfestival.innerHTML = 'Preencha todos os campos para continuar!'
+            setTimeout(function () { mensagemfestival.innerHTML = '' }, 1000)
         } else if (nota < 0 || nota > 10) {
-            alert('Insira uma nota de 0 a 10.')
+            mensagemfestival.innerHTML = 'Insira uma nota de 0 a 10.'
+            setTimeout(function () { mensagemfestival.innerHTML = '' }, 1000)
         }
         else {
             fetch("/festival/cadastrar", {
@@ -411,7 +417,8 @@
         let fkcoreo = select_deletarCoreo.value;
 
         if (fkcoreo == 0) {
-            alert('Selecione uma coreografia para deletar')
+            mensagemdeletar.innerHTML = 'Selecione uma coreografia para deletar'
+            setTimeout(function () { mensagemdeletar.innerHTML = '' }, 1000)
         } else {
             fetch("/coreo/deletar", {
                 method: "POST",

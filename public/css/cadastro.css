@@ -84,6 +84,11 @@ nav img {
     cursor: pointer;
 }
 
+.outros-cadastro-mensagem{
+    font-size:19px ;
+    color:red;
+}
+
 .botao-cadastro{
     display: inline-block;
     background-color: #1E1E1E;

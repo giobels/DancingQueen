@@ -36,7 +36,7 @@
                         Cadastrar</span></a>
             </div>
 
-
+            <span class="outro-login-mensagem" id="mensagem"></span>
             <button onclick="entrar()" class="botao-login"><span class="botao-anim">Entrar</span></button>
 
         </div>
@@ -61,7 +61,9 @@
         const senha = input_senha.value;
 
         if (email == '' || senha == '') {
-            alert('Insira um login e senha')
+            mensagem.style.color = 'red'
+            mensagem.innerHTML = 'Insira um login e senha'
+            setTimeout(function () { mensagem.innerHTML = '' }, 1000)
         } else {
 
             fetch("/usuarios/autenticar", {
@@ -95,7 +97,9 @@
                 } else {
 
                     console.log("Houve um erro ao tentar realizar o login!");
-                    alert('E-mail e /ou senha inválidos')
+                    mensagem.style.color = 'red'
+                    mensagem.innerHTML = 'E-mail e /ou senha inválidos'
+                    setTimeout(function () { mensagem.innerHTML = '' }, 1000)
                     resposta.text().then(texto => {
                         console.error(texto);
                         // finalizarAguardar(texto);
