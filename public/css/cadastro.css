@@ -32,7 +32,6 @@ nav img {
 
 .fundo {
     height: 100vh;
-    align-self: flex-end;
 }
 
 .cadastro {
@@ -42,7 +41,7 @@ nav img {
     flex-direction: column;
     align-items: center;
     gap: 30px; 
-    margin-left: 250px;  
+    margin-left: 210px;  
     margin-right: 50px;
 }
 
