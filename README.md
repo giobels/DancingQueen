@@ -16,7 +16,7 @@
 </div>
 
 <div> 
-  O projeto contará com uma landing page, quiz, login, cadastro e dashboard. Desenvolvido por mim apenas para estudo pessoal.
+  O projeto contará com uma landing page, login, cadastro e dashboard. Desenvolvido por mim apenas para estudo pessoal.
 </div>
 
 
